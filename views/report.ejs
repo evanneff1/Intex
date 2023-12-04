@@ -1,0 +1,96 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<!-- LOG IN VERIFICATION -->
+
+<h1>Dropdown List from myDatabase</h1>
+    <form>
+        <label for="dropdown">Select an option:</label>
+        <select id="dropdown" name="dropdown">
+        <option value="all" selected>All Users</option>
+        <% data.forEach(item => { %>
+            <option value="<%= item.id %>"><%= item.name %></option>
+        <% }); %>
+        </select>
+    </form>
+    <br><br><br><br>
+    <div>
+        <table style="width: 100%; background-color: antiquewhite; border: 1px solid black;">
+            <thead style="background-color: cornflowerblue; color: white;">
+              <tr>
+                <th style="text-align: left;">anonymousID</th>
+                <th style="text-align: left;">timestamp</th>
+                <th style="text-align: left;">age</th>
+                <th style="text-align: left;">gender</th>
+                <th style="text-align: left;">relationshipStatus</th>
+                <th style="text-align: left;">occupationStatus</th>
+                <th style="text-align: left;">mediaUse</th>
+                <th style="text-align: left;">mediaDailyAvg</th>
+                <th style="text-align: left;">mediaWOPurpose</th>
+                <th style="text-align: left;">distractedBusy</th>
+                <th style="text-align: left;">restlessness</th>
+                <th style="text-align: left;">distractedGeneral</th>
+                <th style="text-align: left;">botheredWorry</th>
+                <th style="text-align: left;">concentration</th>
+                <th style="text-align: left;">comparison</th>
+                <th style="text-align: left;">compFeelings</th>
+                <th style="text-align: left;">validation</th>
+                <th style="text-align: left;">depressed</th>
+                <th style="text-align: left;">dailyInterestFluctuation</th>
+                <th style="text-align: left;">sleepIssues</th>
+                <th style="text-align: left;">platformUser</th>
+                <th style="text-align: left;">organizationUser</th>
+              </tr>
+            </thead>
+            <!-- WORK ON THIS WHEN myDatabase LOADED -->
+            <tbody style="font-family: Arial; font-size: 9pt;">
+             <% for (let iCount = 0; iCount < myDatabase.length; iCount++) { %>
+                <tr>
+                  <td><%= myDatabase[iCount].anonymousID %></td>
+                  <td><%= myDatabase[iCount].timestamp %></td>
+                  <td><%= myDatabase[iCount].age %></td>
+                  <td><%= myDatabase[iCount].gender %></td>
+                  <td><%= myDatabase[iCount].relationshipStatus %></td>
+                  <td><%= myDatabase[iCount].occupationStatus %></td>
+                  <td><%= myDatabase[iCount].mediaUse %></td>
+                  <td><%= myDatabase[iCount].mediaDailyAvg %></td>
+                  <td><%= myDatabase[iCount].mediaWOPurpose %></td>
+                  <td><%= myDatabase[iCount].distractedBusy %></td>
+                  <td><%= myDatabase[iCount].restlessness %></td>
+                  <td><%= myDatabase[iCount].distractedGeneral %></td>
+                  <td><%= myDatabase[iCount].botheredWorry %></td>
+                  <td><%= myDatabase[iCount].concentration %></td>
+                  <td><%= myDatabase[iCount].comparison %></td>
+                  <td><%= myDatabase[iCount].compFeelings %></td>
+                  <td><%= myDatabase[iCount].validation %></td>
+                  <td><%= myDatabase[iCount].depressed %></td>
+                  <td><%= myDatabase[iCount].dailyInterestFluctuation %></td>
+                  <td><%= myDatabase[iCount].sleepIssues %></td>
+                  <td><%= myDatabase[iCount].platformUser %></td>
+                  <td><%= myDatabase[iCount].organizationUser %></td>
+
+                  <!--
+                    <form action="/editCountry/<%= myDatabase[iCount].country_id %>" method="GET">
+                      <button type="submit">Edit</button>
+                    </form>
+                  </td>
+                  <td style="text-align: center;">
+                    <form action="/deleteCountry/<%= myDatabase[iCount].country_id %>" method="POST">
+                      <button type="submit">Delete</button>
+                    </form>
+                    -->
+                  </td>
+                </tr>
+             <% } %>
+            </tbody>
+          </table>
+    </div>
+
+</body>
+</html>
