@@ -11,12 +11,14 @@ app.use(express.urlencoded({ extended: true }));
 const knex = require("knex")({
   client: "pg",
   connection: {
-    host: process.env.DB_ENDPOINT || "localhost",
+    host:
+      process.env.DB_ENDPOINT ||
+      "intexdb.cn3jygf26agk.us-east-1.rds.amazonaws.com",
     user: process.env.DB_USERNAME || "postgres",
-    password: process.env.DB_PASSWORD || "mn4Fkv5qp8gcEne",
-    database: process.env.DB_NAME || "bucketlist",
+    password: process.env.DB_PASSWORD || "2BacN966J1da5F1",
+    database: process.env.DB_NAME || "intexDB",
     port: process.env.RDS_PORT || 5432,
-    // ssl: process.env.DB_SSL ? { rejectUnauthorized: false } : false,
+    ssl: process.env.DB_SSL ? { rejectUnauthorized: false } : false,
   },
 });
 
@@ -27,7 +29,7 @@ const knex = require("knex")({
 app.get("/", (req, res) => {
   knex
     .select()
-    .from("country")
+    .from("users")
     .then((countrys) => {
       res.render("index", { mycountrys: countrys });
     })
