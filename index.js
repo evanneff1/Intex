@@ -12,7 +12,6 @@ const knex = require("knex")({
   client: "pg",
   connection: {
     host: process.env.DB_ENDPOINT || "localhost",
-    host: process.env.DB_ENDPOINT || "localhost",
     user: process.env.DB_USERNAME || "postgres",
     password: process.env.DB_PASSWORD || "mn4Fkv5qp8gcEne",
     database: process.env.DB_NAME || "bucketlist",
