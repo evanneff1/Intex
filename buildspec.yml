@@ -1,0 +1,25 @@
+version: 0.2
+
+phases:
+  install:
+    commands:
+      - echo Installing source NPM dependencies...
+      - npm install
+  pre_build:
+    commands:
+      - echo Starting pre-build steps...
+  build:
+    commands:
+      - echo Building the Node.js application...
+      - npm run build
+  post_build:
+    commands:
+      - echo Build completed on `date`
+
+artifacts:
+  files:
+    - "**/*"
+
+cache:
+  paths:
+    - "node_modules/**/*"
