@@ -16,7 +16,7 @@ const knex = require("knex")({
     password: process.env.DB_PASSWORD || "mn4Fkv5qp8gcEne",
     database: process.env.DB_NAME || "bucketlist",
     port: process.env.RDS_PORT || 5432,
-    // ssl: process.env.DB_SSL ? { rejectUnauthorized: false } : false,
+    ssl: process.env.DB_SSL ? { rejectUnauthorized: false } : false,
   },
 });
 
@@ -27,7 +27,7 @@ const knex = require("knex")({
 app.get("/", (req, res) => {
   knex
     .select()
-    .from("country")
+    .from("users")
     .then((countrys) => {
       res.render("index", { mycountrys: countrys });
     })
