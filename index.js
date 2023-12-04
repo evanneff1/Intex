@@ -20,8 +20,21 @@ const knex = require("knex")({
   },
 });
 
+// app.get("/", (req, res) => {
+//   res.render("index");
+// });
+
 app.get("/", (req, res) => {
-  res.render("index");
+  knex
+    .select()
+    .from("country")
+    .then((countrys) => {
+      res.render("index", { mycountrys: countrys });
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json({ err });
+    });
 });
 
 app.get("/account", (req, res) => {

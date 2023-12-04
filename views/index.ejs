@@ -2,55 +2,65 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Home</title>
-  <link rel="stylesheet" type="text/css" href="stylesheet.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" type="text/css" href="stylesheet.css">
 
 </head>
 
 <body>
-  <p>This is a webpage</p>
-  <form method="get" action="/account">
-    <button type="submit">Create Account</button>
-  </form>
+    <p>This is a webpage</p>
+    <form method="get" action="/account">
+        <button type="submit">Create Account</button>
+    </form>
 
-  <h1>Our Purpose</h1>
-  <div>
-      <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. 
-          Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. 
-          Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi.
-      </p>
-  </div>
+    <h1>Our Purpose</h1>
+    <div>
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus.
+            Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor.
+            Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi.
+        </p>
+    </div>
 
-  <div>
-      <iframe title="Class Project" width="600" height="373.5"
-      src="https://app.powerbi.com/view?r=eyJrIjoiYmRhZjFiZDMtZDdlNS00NGM3LWIzYzUtMDdhZTM5NmFjZjUzIiwidCI6ImNlZDQ1MmVhLTExNDktNDMyOS05YjE5LWVhNjc4MzI5ZGU3OSIsImMiOjZ9&embedImagePlaceholder=true"
-      frameborder="0" allowFullScreen="true"></iframe>    
-  </div>
+    <div>
+        <iframe title="Class Project" width="600" height="373.5"
+            src="https://app.powerbi.com/view?r=eyJrIjoiYmRhZjFiZDMtZDdlNS00NGM3LWIzYzUtMDdhZTM5NmFjZjUzIiwidCI6ImNlZDQ1MmVhLTExNDktNDMyOS05YjE5LWVhNjc4MzI5ZGU3OSIsImMiOjZ9&embedImagePlaceholder=true"
+            frameborder="0" allowFullScreen="true"></iframe>
+    </div>
 
-  <div>
-      <h3>Big Ideas</h3>
-      <p>
-          <ul>
-              <li>big idea one</li>
-              <li>big idea two</li>
-              <li>big idea three</li>     
-          </ul>
-      </p>
+    <div>
+        <h3>Big Ideas</h3>
+        <p>
+        <ul>
+            <li>big idea one</li>
+            <li>big idea two</li>
+            <li>big idea three</li>
+        </ul>
+        </p>
 
-      <h3>Recomendations</h3>
-      <p>
-          <ul>
-              <li>recomendation one</li>
-              <li>recomendation two</li>
-              <li>recomendation three</li>
-          </ul>
-      </p>
-  </div>
+        <h3>Recomendations</h3>
+        <p>
+        <ul>
+            <li>recomendation one</li>
+            <li>recomendation two</li>
+            <li>recomendation three</li>
+        </ul>
+        </p>
+    </div>
 
-
+    <ul>
+        <% if(mycountrys && mycountrys.length> 0) { %>
+            <% mycountrys.forEach(function(country) { %>
+                <li>
+                    <%= country.country_name + " " + country.country_id %>
+                </li> <!-- Replace 'name' with the actual property name -->
+                <% }); %>
+                    <% } else { %>
+                        <p>No countries found.</p>
+                        <% } %>
+    </ul>
 
 </body>
 
