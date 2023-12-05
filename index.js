@@ -36,7 +36,7 @@ const knex = require("knex")({
 app.get("/", (req, res) => {
   knex
     .select()
-    .from("users")
+    .from("accountManager")
     .then((countrys) => {
       res.render("index", { mycountrys: countrys });
     })
