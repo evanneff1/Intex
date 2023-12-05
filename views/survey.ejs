@@ -3,10 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>practice</title>
+    <title>Survey Form</title>
 </head>
 <body>
-    <form>
+    <h1>SURVEY</h1>
+    <p id="checking"></p>
+
+    <form id="surveyForm">
         <label for="Age">1. What is your age?</label>
         <input type="number" id="Age" name="Age" min="1" max="100">
         <br><br>
@@ -16,7 +19,6 @@
             <option value="Female">Female</option>
             <option value="Other">Other</option>
         </select> <br><br>
-        <!-- Resort <input type="text" name="resort" id="resort"><br><br> -->
         <label for="RelationshipStatus">3. Relationship Status</label>
         <select id="RelationshipStatus" name="RelationshipStatus">
             <option value="Dating">In a relationship</option>
@@ -41,15 +43,44 @@
             <option value="Government">Government</option>
             <option value="Private">Private</option>
         </select> <br><br>
-        <!-- Resort <input type="text" name="resort" id="resort"><br><br> -->
         <label for="SMUse">6. Do you use social media?</label>
         <select id="SMUse" name="SMUse">
             <option value="Yes">Yes</option>
             <option value="No">No</option>
         </select> <br><br>
 
-        7. What social media platforms do you commonly use? (enter as a list seprated by commons ie. Facebook, Instagram)<input type="text" name="platforms" id="platforms"><br><br>
-        
+        <label>7. What social media platforms do you commonly use?</label>
+<div class="checkbox-group">
+    <label>
+        <input type="checkbox" name="platforms" id="Facebook" value="Facebook"> Facebook
+    </label>
+    <label>
+        <input type="checkbox" name="platforms" id="Instagram" value="Instagram"> Instagram
+    </label>
+    <label>
+        <input type="checkbox" name="platforms" id="Twitter" value="Twitter"> Twitter
+    </label>
+    <label>
+        <input type="checkbox" name="platforms" id="YouTube" value="YouTube"> YouTube
+    </label>
+    <label>
+        <input type="checkbox" name="platforms" id="TikTok" value="TikTok"> TikTok
+    </label>
+    <label>
+        <input type="checkbox" name="platforms" id="Discord" value="Discord"> Discord
+    </label>
+    <label>
+        <input type="checkbox" name="platforms" id="Reddit" value="Reddit"> Reddit
+    </label>
+    <label>
+        <input type="checkbox" name="platforms" id="Snapchat" value="Snapchat"> Snapchat
+    </label>
+    <label>
+        <input type="checkbox" name="platforms" id="Pinterest" value="Pinterest"> Pinterest
+    </label>
+          
+            <!-- Add more options as needed -->
+        <br><br>
         <label for="AvgTime">8. What is the average time you spend on social media every day?</label>
         <select id="AvgTime" name="AvgTime">
             <option value="1">1 hour</option>
@@ -140,8 +171,8 @@
             <option value="4">4</option>
             <option value="5">5</option>
         </select> <br><br>
-        <label for="DailyInterestFluctation">19. On a scale of 1 to 5, how frequently does your interest in daily activities fluctuate?</label>
-        <select id="DailyInterestFluctation" name="DailyInterestFluctation">
+        <label for="DailyInterestFluctuation">19. On a scale of 1 to 5, how frequently does your interest in daily activities fluctuate?</label>
+        <select id="DailyInterestFluctuation" name="DailyInterestFluctuation">
             <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>
@@ -156,7 +187,63 @@
             <option value="4">4</option>
             <option value="5">5</option>
         </select> <br><br>
-        <button type="button" onclick="submit()">Submit</button><br>
+        <button type="button" onclick="submitIt()">Submit</button><br>
     </form>
+  
+    <script>
+
+        function submitIt() 
+        {
+            
+        
+            var age = parseInt(document.getElementById("Age").value);
+            var gender = document.getElementById("Gender").value;
+            var RelationshipStatus = document.getElementById("RelationshipStatus").value;
+            var OccuStatus = document.getElementById("OccuStatus").value;
+            var OrgAffiliation = document.getElementById("OrgAffiliation").value;
+            var SMUse = document.getElementById("SMUse").value;
+            var platforms = [];
+            var checkboxes = document.getElementsByName("platforms");
+            checkboxes.forEach(function (checkbox) {
+                if (checkbox.checked) {
+                    platforms.push(checkbox.value);
+                }
+            });
+            var MediaDailyAvg = parseInt(document.getElementById("AvgTime").value);
+            var MediaWOPurpose = parseInt(document.getElementById("UseWOPurpose").value);
+            var SMDistraction = parseInt(document.getElementById("SMDistraction").value);
+            var Restless = parseInt(document.getElementById("Restless").value);
+            var BotheredWorries = parseInt(document.getElementById("BotheredWorries").value);
+            var Concentration = parseInt(document.getElementById("Concentration").value);
+            var Comparison = parseInt(document.getElementById("Comparison").value);
+            var CompFeelings = parseInt(document.getElementById("CompFeelings").value);
+            var Validation = parseInt(document.getElementById("Validation").value);
+            var Depressed = parseInt(document.getElementById("Depressed").value);
+            var DailyInterestFluctation = parseInt(document.getElementById("DailyInterestFluctuation").value);
+            var SleepIssues = parseInt(document.getElementById("SleepIssues").value);
+    // insert this ish into the database 
+
+            var output = "Age: " + age + "<br>" +
+                         "Gender: " + gender + "<br>" +
+                         "relationship status" + RelationshipStatus + "<br>"; // Include other fields similarly
+            output += "platforms: ";
+            for(let i = 0; i < platforms.length; i++)
+            {   
+                if(i == 0)
+                {
+                    output += platforms[i]
+
+                }
+                else 
+                {
+                output += ", " + platforms[i]
+                }
+            }
+            document.getElementById("checking").innerHTML = output;
+            document.getElementById("surveyForm").reset(); // Reset the form
+        }
+    </script>
+        
+
 </body>
 </html>
