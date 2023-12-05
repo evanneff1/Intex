@@ -77,12 +77,13 @@ app.post("/login", async (req, res) => {
       .from("accountManager")
       .where("username", username);
 
+    console.log(result);
     if (result.length > 0) {
-      const user = result[0];
+      const user = result;
       const validPassword = await bcrypt.compare(password, user.password);
       if (validPassword) {
         req.session.user = {
-          username: user.rows[0].username,
+          username: user.username,
         };
         res.render("report");
       } else {
