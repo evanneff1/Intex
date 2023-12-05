@@ -51,10 +51,6 @@ const knex = require("knex")({
   },
 });
 
-// app.get("/", (req, res) => {
-//   res.render("index");
-// });
-
 app.get("/", (req, res) => {
   knex
     .select()
