@@ -51,10 +51,6 @@ const knex = require("knex")({
   },
 });
 
-// app.get("/", (req, res) => {
-//   res.render("index");
-// });
-
 app.get("/", (req, res) => {
   knex
     .select()
@@ -172,42 +168,54 @@ app.post("/submit-survey", async (req, res) => {
       SleepIssues,
     } = req.body;
 
-    // Convert 'platforms' to a string if it's an array (in case of multiple checkboxes selected)
     const platformsArray = Array.isArray(platforms) ? platforms : [platforms];
 
-    // Insert into database
-    await await knex("survey_responses").insert({
-      age: Age,
-      gender: Gender,
-      relationship_status: RelationshipStatus,
-      occupation_status: OccuStatus,
-      organization_affiliation: OrgAffiliation,
-      social_media_use: SMUse,
-      platforms: platformsString, // Assuming your DB has a single column for all platforms
-      average_time_on_social_media: AvgTime,
-      use_without_purpose: UseWOPurpose,
-      social_media_distraction: SMDistraction,
-      restlessness: Restless,
-      general_distractibility: GenDisctracted,
-      bothered_by_worries: BotheredWorries,
-      concentration_difficulty: Concentration,
-      social_media_comparison: Comparison,
-      comparison_feelings: CompFeelings,
-      social_media_validation: Validation,
-      feelings_of_depression: Depressed,
-      interest_fluctuation: DailyInterestFluctuation,
-      sleep_issues: SleepIssues,
-    });
+    await knex.transaction(async (trx) => {
+      const insertResult = await trx("main")
+        .insert({
+          timestamp: trx.raw("current_timestamp"),
+          age: Age,
+          gender: Gender,
+          relationshipStatus: RelationshipStatus,
+          occupationStatus: OccuStatus,
+          mediaUse: SMUse,
+          mediaDailyAvg: AvgTime,
+          mediaWOPurpose: UseWOPurpose,
+          distractedBusy: SMDistraction,
+          restlessness: Restless,
+          distractedGeneral: GenDisctracted,
+          botheredWorry: BotheredWorries,
+          concentration: Concentration,
+          comparison: Comparison,
+          compFeelings: CompFeelings,
+          validation: Validation,
+          depressed: Depressed,
+          dailyInterestFluctuations: DailyInterestFluctuation,
+          sleepIssues: SleepIssues,
+          Location: "Provo",
+        })
+        .returning("anonymousID");
+      const anonID = insertResult[0].anonymousID; // Adjust based on actual structure
 
+      console.log(anonID);
+      if (platformsArray && platformsArray.length > 0) {
+        const platformInserts = platformsArray.map((platform) => ({
+          anonID: parseInt(anonID),
+          platformNum: platform,
+        }));
+
+        await trx("platformUser").insert(platformInserts);
+      }
+      await trx("organizationUser").insert({
+        anonID: anonID,
+        organizationNum: OrgAffiliation,
+      });
+    });
     res.send("Survey response submitted successfully");
   } catch (error) {
     console.error("Error submitting survey response:", error);
     res.status(500).send("Error submitting survey response");
   }
-});
-
-app.get("/social", (req, res) => {
-  res.render("social_media");
 });
 
 app.get("/loginpage", (req, res) => {
