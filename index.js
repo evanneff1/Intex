@@ -72,22 +72,20 @@ app.post("/login", async (req, res) => {
     password = req.body.password;
     console.log("Username:", username, "Password:", password);
 
-    const user = await knex
+    const result = await knex
       .select("username", "password")
       .from("accountManager")
-      .where("username", username)
-      .then(user);
+      .where("username", username);
 
-    if (user.rows.length > 0) {
-      const validPassword = await bcrypt.compare(
-        password,
-        user.rows[0].password
-      );
+    console.log(result);
+    if (result.length > 0) {
+      const user = result[0];
+      const validPassword = await bcrypt.compare(password, user.password);
       if (validPassword) {
         req.session.user = {
-          username: user.rows[0].username,
+          username: user.username,
         };
-        res.render("home");
+        res.render("report");
       } else {
         res.status(400).send("Invalid username or password");
       }
@@ -128,12 +126,10 @@ app.post("/register", async (req, res) => {
 
     const hashPass = await bcrypt.hash(new_password, saltRounds);
 
-    const newUser = await knex("accountManager")
-      .insert({
-        username: new_username,
-        password: hashPass,
-      })
-      .returning("*");
+    const newUser = await knex("accountManager").insert({
+      username: new_username,
+      password: hashPass,
+    });
 
     res.status(201).send("User created successfully");
   } catch (error) {
@@ -163,7 +159,16 @@ app.get("/accounts", (req, res) => {
 });
 
 app.get("/report", (req, res) => {
-  res.render("report");
+  knex
+    .select()
+    .from("main")
+    .then((items) => {
+      res.render("report", { intex_db: items });
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json({ err });
+    });
 });
 
 app.get("/survey", (req, res) => {
