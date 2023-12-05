@@ -8,6 +8,13 @@ app.set("view engine", "ejs");
 const port = process.env.PORT || 3000;
 app.use(express.urlencoded({ extended: true }));
 
+app.use((req, res, next) => {
+  if (!req.secure && req.get("x-forwarded-proto") !== "https") {
+    return res.redirect("https://" + req.get("host") + req.url);
+  }
+  next();
+});
+
 const knex = require("knex")({
   client: "pg",
   connection: {
@@ -16,7 +23,7 @@ const knex = require("knex")({
     password: process.env.DB_PASSWORD || "mn4Fkv5qp8gcEne",
     database: process.env.DB_NAME || "bucketlist",
     port: process.env.RDS_PORT || 5432,
-    // ssl: process.env.DB_SSL ? { rejectUnauthorized: false } : false,
+    ssl: process.env.DB_SSL ? { rejectUnauthorized: false } : false,
   },
 });
 
@@ -27,7 +34,7 @@ const knex = require("knex")({
 app.get("/", (req, res) => {
   knex
     .select()
-    .from("country")
+    .from("users")
     .then((countrys) => {
       res.render("index", { mycountrys: countrys });
     })
