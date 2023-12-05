@@ -140,7 +140,7 @@ function checkAuthentication(req, res, next) {
   if (req.session.user) {
     next();
   } else {
-    res.render("index");
+    res.render("login");
   }
 }
 app.post("/submit-survey", async (req, res) => {
@@ -226,12 +226,16 @@ app.get("/accounts", checkAuthentication, (req, res) => {
   res.render("accounts");
 });
 
+app.get("/reportpage", (req, res) => {
+  res.render("report");
+});
+
 app.get("/report", async (req, res) => {
   try {
     const drop = req.query.dropdown; // Retrieve the dropdown value
 
     let intex_db; // Declare intex_db variable outside the if-else blocks
-    
+
     const drop_db = await knex.select().from("main");
 
     if (drop == "All Users") {
