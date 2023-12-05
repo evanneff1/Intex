@@ -147,6 +147,64 @@ function checkAuthentication(req, res, next) {
     res.render("index");
   }
 }
+app.post("/submit-survey", async (req, res) => {
+  try {
+    const {
+      Age,
+      Gender,
+      RelationshipStatus,
+      OccuStatus,
+      OrgAffiliation,
+      SMUse,
+      platforms,
+      AvgTime,
+      UseWOPurpose,
+      SMDistraction,
+      Restless,
+      GenDisctracted,
+      BotheredWorries,
+      Concentration,
+      Comparison,
+      CompFeelings,
+      Validation,
+      Depressed,
+      DailyInterestFluctuation,
+      SleepIssues,
+    } = req.body;
+
+    // Convert 'platforms' to a string if it's an array (in case of multiple checkboxes selected)
+    const platformsArray = Array.isArray(platforms) ? platforms : [platforms];
+
+    // Insert into database
+    await await knex("survey_responses").insert({
+      age: Age,
+      gender: Gender,
+      relationship_status: RelationshipStatus,
+      occupation_status: OccuStatus,
+      organization_affiliation: OrgAffiliation,
+      social_media_use: SMUse,
+      platforms: platformsString, // Assuming your DB has a single column for all platforms
+      average_time_on_social_media: AvgTime,
+      use_without_purpose: UseWOPurpose,
+      social_media_distraction: SMDistraction,
+      restlessness: Restless,
+      general_distractibility: GenDisctracted,
+      bothered_by_worries: BotheredWorries,
+      concentration_difficulty: Concentration,
+      social_media_comparison: Comparison,
+      comparison_feelings: CompFeelings,
+      social_media_validation: Validation,
+      feelings_of_depression: Depressed,
+      interest_fluctuation: DailyInterestFluctuation,
+      sleep_issues: SleepIssues,
+    });
+
+    res.send("Survey response submitted successfully");
+  } catch (error) {
+    console.error("Error submitting survey response:", error);
+    res.status(500).send("Error submitting survey response");
+  }
+});
 
 app.get("/social", (req, res) => {
   res.render("social_media");
