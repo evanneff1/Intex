@@ -9,7 +9,6 @@
 </head>
 
 <body>
-    <!-- Navigation Bar -->
     <nav>
         <ul>
             <li><a href="/accounts">Create Account</a></li>
@@ -32,7 +31,8 @@
         </section>
 
         <section class="powerbi-report">
-            <iframe title="Class Project" width="600" height="373.5" src="https://app.powerbi.com/view?..."
+            <iframe title="Class Project" width="600" height="373.5"
+                src="https://app.powerbi.com/view?r=eyJrIjoiYmRhZjFiZDMtZDdlNS00NGM3LWIzYzUtMDdhZTM5NmFjZjUzIiwidCI6ImNlZDQ1MmVhLTExNDktNDMyOS05YjE5LWVhNjc4MzI5ZGU3OSIsImMiOjZ9&embedImagePlaceholder=true"
                 frameborder="0" allowFullScreen="true"></iframe>
         </section>
 
@@ -59,7 +59,7 @@
                 <% if(mycountrys && mycountrys.length> 0) { %>
                     <% mycountrys.forEach(function(country) { %>
                         <li>
-                            <%= country.anonID %>
+                            <%= country.username %>
                         </li>
                         <% }); %>
                             <% } else { %>
