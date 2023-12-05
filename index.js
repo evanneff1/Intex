@@ -79,7 +79,7 @@ app.post("/login", async (req, res) => {
 
     console.log(result);
     if (result.length > 0) {
-      const user = result;
+      const user = result[0];
       const validPassword = await bcrypt.compare(password, user.password);
       if (validPassword) {
         req.session.user = {
