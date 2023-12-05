@@ -14,7 +14,7 @@
         <label for="dropdown">Select an option:</label>
         <select id="dropdown" name="dropdown">
         <option value="all" selected>All Users</option>
-        <% data.forEach(item => { %>
+        <% myDatabase.forEach(item => { %>
             <option value="<%= item.id %>"><%= item.name %></option>
         <% }); %>
         </select>
@@ -44,8 +44,9 @@
                 <th style="text-align: left;">depressed</th>
                 <th style="text-align: left;">dailyInterestFluctuation</th>
                 <th style="text-align: left;">sleepIssues</th>
-                <th style="text-align: left;">platformUser</th>
-                <th style="text-align: left;">organizationUser</th>
+                <th style="text-align: left;">platformNumr</th>
+                <th style="text-align: left;">organizationNum</th>
+                <th style="text-align: left;">location</th>
               </tr>
             </thead>
             <!-- WORK ON THIS WHEN myDatabase LOADED -->
@@ -72,9 +73,10 @@
                   <td><%= myDatabase[iCount].depressed %></td>
                   <td><%= myDatabase[iCount].dailyInterestFluctuation %></td>
                   <td><%= myDatabase[iCount].sleepIssues %></td>
-                  <td><%= myDatabase[iCount].platformUser %></td>
-                  <td><%= myDatabase[iCount].organizationUser %></td>
-
+                  <td><%= myDatabase[iCount].platformNum %></td>
+                  <td><%= myDatabase[iCount].organizationNum %></td>
+                  <td><%= myDatabase[iCount].location %></td>
+                </tr>
                   <!--
                     <form action="/editCountry/<%= myDatabase[iCount].country_id %>" method="GET">
                       <button type="submit">Edit</button>
@@ -84,9 +86,9 @@
                     <form action="/deleteCountry/<%= myDatabase[iCount].country_id %>" method="POST">
                       <button type="submit">Delete</button>
                     </form>
+                   </td> 
                     -->
-                  </td>
-                </tr>
+                
              <% } %>
             </tbody>
           </table>
