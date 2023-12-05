@@ -11,8 +11,20 @@
 
 <body>
     <p>This is a webpage</p>
-    <form method="get" action="/account">
-        <button type="submit">Create Account</button>
+    <form method="get" action="/accounts">
+        <button type="submit">Accounts</button>
+    </form>
+
+    <form method="get" action="/social">
+        <button type="submit">Social</button>
+    </form>
+
+    <form method="get" action="/report">
+        <button type="submit">Report</button>
+    </form>
+
+    <form method="get" action="/survey">
+        <button type="submit">Survey</button>
     </form>
 
     <h1>Our Purpose</h1>
@@ -54,7 +66,7 @@
         <% if(mycountrys && mycountrys.length> 0) { %>
             <% mycountrys.forEach(function(country) { %>
                 <li>
-                    <%= country.username + " " + country.password %>
+                    <%= country.anonID %>
                 </li> <!-- Replace 'name' with the actual property name -->
                 <% }); %>
                     <% } else { %>

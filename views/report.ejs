@@ -9,12 +9,12 @@
 <body>
 <!-- LOG IN VERIFICATION -->
 
-<h1>Dropdown List from myDatabase</h1>
+<h1>Dropdown List from intex_db</h1>
     <form>
         <label for="dropdown">Select an option:</label>
         <select id="dropdown" name="dropdown">
         <option value="all" selected>All Users</option>
-        <% myDatabase.forEach(item => { %>
+        <% intex_db.forEach(item => { %>
             <option value="<%= item.id %>"><%= item.name %></option>
         <% }); %>
         </select>
@@ -49,41 +49,41 @@
                 <th style="text-align: left;">location</th>
               </tr>
             </thead>
-            <!-- WORK ON THIS WHEN myDatabase LOADED -->
+            <!-- WORK ON THIS WHEN intex_db LOADED -->
             <tbody style="font-family: Arial; font-size: 9pt;">
-             <% for (let iCount = 0; iCount < myDatabase.length; iCount++) { %>
+             <% for (let iCount = 0; iCount < intex_db.length; iCount++) { %>
                 <tr>
-                  <td><%= myDatabase[iCount].anonymousID %></td>
-                  <td><%= myDatabase[iCount].timestamp %></td>
-                  <td><%= myDatabase[iCount].age %></td>
-                  <td><%= myDatabase[iCount].gender %></td>
-                  <td><%= myDatabase[iCount].relationshipStatus %></td>
-                  <td><%= myDatabase[iCount].occupationStatus %></td>
-                  <td><%= myDatabase[iCount].mediaUse %></td>
-                  <td><%= myDatabase[iCount].mediaDailyAvg %></td>
-                  <td><%= myDatabase[iCount].mediaWOPurpose %></td>
-                  <td><%= myDatabase[iCount].distractedBusy %></td>
-                  <td><%= myDatabase[iCount].restlessness %></td>
-                  <td><%= myDatabase[iCount].distractedGeneral %></td>
-                  <td><%= myDatabase[iCount].botheredWorry %></td>
-                  <td><%= myDatabase[iCount].concentration %></td>
-                  <td><%= myDatabase[iCount].comparison %></td>
-                  <td><%= myDatabase[iCount].compFeelings %></td>
-                  <td><%= myDatabase[iCount].validation %></td>
-                  <td><%= myDatabase[iCount].depressed %></td>
-                  <td><%= myDatabase[iCount].dailyInterestFluctuation %></td>
-                  <td><%= myDatabase[iCount].sleepIssues %></td>
-                  <td><%= myDatabase[iCount].platformNum %></td>
-                  <td><%= myDatabase[iCount].organizationNum %></td>
-                  <td><%= myDatabase[iCount].location %></td>
+                  <td><%= intex_db[iCount].anonymousID %></td>
+                  <td><%= intex_db[iCount].timestamp %></td>
+                  <td><%= intex_db[iCount].age %></td>
+                  <td><%= intex_db[iCount].gender %></td>
+                  <td><%= intex_db[iCount].relationshipStatus %></td>
+                  <td><%= intex_db[iCount].occupationStatus %></td>
+                  <td><%= intex_db[iCount].mediaUse %></td>
+                  <td><%= intex_db[iCount].mediaDailyAvg %></td>
+                  <td><%= intex_db[iCount].mediaWOPurpose %></td>
+                  <td><%= intex_db[iCount].distractedBusy %></td>
+                  <td><%= intex_db[iCount].restlessness %></td>
+                  <td><%= intex_db[iCount].distractedGeneral %></td>
+                  <td><%= intex_db[iCount].botheredWorry %></td>
+                  <td><%= intex_db[iCount].concentration %></td>
+                  <td><%= intex_db[iCount].comparison %></td>
+                  <td><%= intex_db[iCount].compFeelings %></td>
+                  <td><%= intex_db[iCount].validation %></td>
+                  <td><%= intex_db[iCount].depressed %></td>
+                  <td><%= intex_db[iCount].dailyInterestFluctuation %></td>
+                  <td><%= intex_db[iCount].sleepIssues %></td>
+                  <td><%= intex_db[iCount].platformNum %></td>
+                  <td><%= intex_db[iCount].organizationNum %></td>
+                  <td><%= intex_db[iCount].location %></td>
                 </tr>
                   <!--
-                    <form action="/editCountry/<%= myDatabase[iCount].country_id %>" method="GET">
+                    <form action="/editCountry/<%= intex_db[iCount].country_id %>" method="GET">
                       <button type="submit">Edit</button>
                     </form>
                   </td>
                   <td style="text-align: center;">
-                    <form action="/deleteCountry/<%= myDatabase[iCount].country_id %>" method="POST">
+                    <form action="/deleteCountry/<%= intex_db[iCount].country_id %>" method="POST">
                       <button type="submit">Delete</button>
                     </form>
                    </td> 
