@@ -90,12 +90,34 @@
         br {
             line-height: 1.5;
         }
+
+        .back-button {
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            padding: 10px 15px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 16px;
+            z-index: 1000;
+            /* ensures the button stays above other elements */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s;
+        }
+
+        .back-button:hover {
+            background-color: #0056b3;
+        }
     </style>
 </head>
 
 <body>
     <h1>SURVEY</h1>
     <p id="checking"></p>
+    <a href="/" class="back-button">Back to Home</a>
+
 
     <form id="surveyForm" method="post" action="submit-survey">
         <label for="Age">1. What is your age?</label>
