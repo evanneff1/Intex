@@ -8,6 +8,13 @@ app.set("view engine", "ejs");
 const port = process.env.PORT || 3000;
 app.use(express.urlencoded({ extended: true }));
 
+app.use((req, res, next) => {
+  if (!req.secure && req.get("x-forwarded-proto") !== "https") {
+    return res.redirect("https://" + req.get("host") + req.url);
+  }
+  next();
+});
+
 const knex = require("knex")({
   client: "pg",
   connection: {
