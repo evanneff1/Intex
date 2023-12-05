@@ -222,7 +222,7 @@ app.get("/loginpage", (req, res) => {
   res.render("login");
 });
 
-app.get("/accounts", (req, res) => {
+app.get("/accounts", checkAuthentication, (req, res) => {
   res.render("accounts");
 });
 
