@@ -175,7 +175,7 @@ app.post("/submit-survey", async (req, res) => {
     const platformsArray = Array.isArray(platforms) ? platforms : [platforms];
 
     await knex.transaction(async (trx) => {
-      const [anonID] = await trx("main_table")
+      const [anonID] = await trx("main")
         .insert({
           timestamp: trx.raw("current_timestamp"),
           age: Age,
