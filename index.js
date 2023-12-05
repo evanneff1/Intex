@@ -72,21 +72,19 @@ app.post("/login", async (req, res) => {
     password = req.body.password;
     console.log("Username:", username, "Password:", password);
 
-    const user = await knex
+    const result = await knex
       .select("username", "password")
       .from("accountManager")
       .where("username", username);
 
-    if (user.rows.length > 0) {
-      const validPassword = await bcrypt.compare(
-        password,
-        user.rows[0].password
-      );
+    if (result.length > 0) {
+      const user = result[0];
+      const validPassword = await bcrypt.compare(password, user.password);
       if (validPassword) {
         req.session.user = {
           username: user.rows[0].username,
         };
-        res.render("home");
+        res.render("report");
       } else {
         res.status(400).send("Invalid username or password");
       }
