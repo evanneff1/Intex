@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>login</title>
 </head>
+
 <body>
-    <form id="loginForm" method="POST">
+    <form id="loginForm" method="POST" action="/login">
         Username <input type="text" name="username" id="username"><br><br>
         Password <input type="password" name="password" id="password"><br><br>
-        <button type="button" onclick="login()">Log in</button><br>
+        <button type="submit">Log in</button><br>
 
         <script>
             var username = document.getElementById("username").value;
@@ -21,4 +23,5 @@
         </script>
     </form>
 </body>
+
 </html>

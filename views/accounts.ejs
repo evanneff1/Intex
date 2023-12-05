@@ -10,11 +10,11 @@
 
 <body>
   <p>This is the account page</p>
-  <form id="accCreate" method="POST">
-    Username <input type="text" name="username" id="username"><br><br>
-    Password <input type="password" name="password" id="password"><br><br>
+  <form id="accCreate" method="POST" action="/register">
+    Username <input type="text" name="new_username" id="username"><br><br>
+    Password <input type="password" name="new_password" id="password"><br><br>
     Confirm Password <input type="passwordConf" name="passwordConf" id="passwordConf"><br><br>
-    <button type="button" onclick="newAcct()">Create Account</button><br>
+    <button type="submit" onclick="newAcct()">Create Account</button><br>
 
     <script>
       var username = document.getElementById("username").value;
@@ -27,7 +27,7 @@
 
     </script>
 
-</form>
+  </form>
 </body>
 
 </html>
