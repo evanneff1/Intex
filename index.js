@@ -199,7 +199,7 @@ app.post("/submit-survey", async (req, res) => {
           Location: "Provo",
         })
         .returning("anonymousID");
-
+      console.log(anonID);
       if (platformsArray && platformsArray.length > 0) {
         const platformInserts = platformsArray.map((platform) => ({
           anonID: anonID,
@@ -218,10 +218,6 @@ app.post("/submit-survey", async (req, res) => {
     console.error("Error submitting survey response:", error);
     res.status(500).send("Error submitting survey response");
   }
-});
-
-app.get("/social", (req, res) => {
-  res.render("social_media");
 });
 
 app.get("/loginpage", (req, res) => {
