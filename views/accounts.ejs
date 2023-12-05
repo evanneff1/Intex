@@ -4,26 +4,29 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Account</title>
+  <title>Create Account</title>
   <link rel="stylesheet" type="text/css" href="stylesheet.css">
 </head>
 
 <body>
-  <p>This is the account page</p>
-  <form id="accCreate" method="POST" action="/register">
-    Username <input type="text" name="new_username" id="username"><br><br>
-    Password <input type="password" name="new_password" id="password"><br><br>
-    Confirm Password <input type="password" name="passwordConf" id="passwordConf"><br><br>
-    <button type="submit" onclick="newAcct()">Create Account</button><br>
+  <p>Create Account</p>
+  <form id="accCreate" method="post" action="/register">
+    <label for="new_username">Username</label>
+    <input type="text" name="new_username" id="new_username"><br><br>
+    <label for="new_password">Password</label>
+    <input type="password" name="new_password" id="new_password"><br><br>
+    <label for="passwordConf">Confirm Password</label>
+    <input type="password" name="passwordConf" id="passwordConf"><br><br>
+    <button type="submit">Create Account</button>
 
     <script>
-      var username = document.getElementById("username").value;
-      var password = document.getElementById("password").value;
-      var passwordConf = document.getElementById("passwordConf").value;
+      // var username = document.getElementById("username").value;
+      // var password = document.getElementById("password").value;
+      // var passwordConf = document.getElementById("passwordConf").value;
 
-      // stuff in index.js
+      // // stuff in index.js
 
-      document.getElementById("accCreate").reset(); // Reset the form
+      // document.getElementById("accCreate").reset(); // Reset the form
 
     </script>
 
