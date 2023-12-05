@@ -128,12 +128,10 @@ app.post("/register", async (req, res) => {
 
     const hashPass = await bcrypt.hash(new_password, saltRounds);
 
-    const newUser = await knex("accountManager")
-      .insert({
-        username: new_username,
-        password: hashPass,
-      })
-      .returning("*");
+    const newUser = await knex("public.'accountManager'").insert({
+      username: new_username,
+      password: hashPass,
+    });
 
     res.status(201).send("User created successfully");
   } catch (error) {
