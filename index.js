@@ -102,11 +102,11 @@ app.post("/login", async (req, res) => {
 
 app.post("/register", async (req, res) => {
   try {
-    const new_username = req.body.newusername;
-    const new_password = req.body.newpassword;
+    const new_username = req.body.new_username;
+    const new_password = req.body.new_password;
     const passwordConf = req.body.passwordConf;
 
-    // console.log("Username:", new_username, "Password:", new_password);
+    console.log("Username:", new_username, "Password:", new_password);
 
     if (!new_password) {
       return res.status(400).send("Password is required");
