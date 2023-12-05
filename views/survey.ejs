@@ -11,7 +11,7 @@
     <h1>SURVEY</h1>
     <p id="checking"></p>
 
-    <form id="surveyForm" method="GET">
+    <form id="surveyForm" method="post" action="submit-survey">
         <label for="Age">1. What is your age?</label>
         <input type="number" id="Age" name="Age" min="1" max="100">
         <br><br>
@@ -39,11 +39,11 @@
 
         <label for="OrgAffiliation">5. What type of organization are you affiliated with?</label>
         <select id="OrgAffiliation" name="OrgAffiliation">
-            <option value="University">University</option>
-            <option value="School">School</option>
-            <option value="Company">Company</option>
-            <option value="Government">Government</option>
-            <option value="Private">Private</option>
+            <option value="1">University</option>
+            <option value="2">School</option>
+            <option value="3">Company</option>
+            <option value="4">Government</option>
+            <option value="5">Private</option>
         </select> <br><br>
         <label for="SMUse">6. Do you use social media?</label>
         <select id="SMUse" name="SMUse">
@@ -54,34 +54,33 @@
         <label>7. What social media platforms do you commonly use?</label>
         <div class="checkbox-group">
             <label>
-                <input type="checkbox" name="platforms" id="Facebook" value="Facebook"> Facebook
+                <input type="checkbox" name="platforms" id="Facebook" value="1"> Facebook
             </label>
             <label>
-                <input type="checkbox" name="platforms" id="Instagram" value="Instagram"> Instagram
+                <input type="checkbox" name="platforms" id="Instagram" value="3"> Instagram
             </label>
             <label>
-                <input type="checkbox" name="platforms" id="Twitter" value="Twitter"> Twitter
+                <input type="checkbox" name="platforms" id="Twitter" value="2"> Twitter
             </label>
             <label>
-                <input type="checkbox" name="platforms" id="YouTube" value="YouTube"> YouTube
+                <input type="checkbox" name="platforms" id="YouTube" value="4"> YouTube
             </label>
             <label>
-                <input type="checkbox" name="platforms" id="TikTok" value="TikTok"> TikTok
+                <input type="checkbox" name="platforms" id="TikTok" value="8"> TikTok
             </label>
             <label>
-                <input type="checkbox" name="platforms" id="Discord" value="Discord"> Discord
+                <input type="checkbox" name="platforms" id="Discord" value="5"> Discord
             </label>
             <label>
-                <input type="checkbox" name="platforms" id="Reddit" value="Reddit"> Reddit
+                <input type="checkbox" name="platforms" id="Reddit" value="6"> Reddit
             </label>
             <label>
-                <input type="checkbox" name="platforms" id="Snapchat" value="Snapchat"> Snapchat
+                <input type="checkbox" name="platforms" id="Snapchat" value="9"> Snapchat
             </label>
             <label>
-                <input type="checkbox" name="platforms" id="Pinterest" value="Pinterest"> Pinterest
+                <input type="checkbox" name="platforms" id="Pinterest" value="7"> Pinterest
             </label>
         </div>
-        <!-- Add more options as needed -->
         <br><br>
         <label for="AvgTime">8. What is the average time you spend on social media every day?</label>
         <select id="AvgTime" name="AvgTime">
@@ -195,7 +194,7 @@
             <option value="4">4</option>
             <option value="5">5</option>
         </select> <br><br>
-        <button type="button" onclick="submitIt()">Submit</button><br>
+        <button type="submit">Submit</button><br>
     </form>
 
     <script>
