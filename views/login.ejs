@@ -6,10 +6,19 @@
     <title>login</title>
 </head>
 <body>
-    <form>
+    <form id="loginForm" method="POST">
         Username <input type="text" name="username" id="username"><br><br>
         Password <input type="password" name="password" id="password"><br><br>
         <button type="button" onclick="login()">Log in</button><br>
+
+        <script>
+            var username = document.getElementById("username").value;
+            var password = document.getElementById("password").value;
+
+            // stuff in index.js
+
+            document.getElementById("loginForm").reset(); // Reset the form
+        </script>
     </form>
 </body>
 </html>
