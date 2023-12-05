@@ -11,14 +11,17 @@
 
 
 <h1>Dropdown List from intex_db</h1>
-    <!-- This creates a drop down capable of listing all our unique anonymousID as options to filter the database. -->
-    <!-- <label for="dropdown">Select an option:</label>
-    <select id="dropdown" name="dropdown">
-    <option value="All Users" selected>All Users</option>
-    <% intex_db.forEach(item => { %>
-        <option value="<%= item.anonymousID %>"><%= item.anonymousID %></option>
-    <% }); %>
-    </select> -->
+   
+    <form action="/report" method="get">
+      <label for="dropdown">Select an option:</label>
+      <select id="dropdown" name="dropdown">
+      <option value="All Users" selected>All Users</option>
+      <% drop_db.forEach(item => { %>
+          <option value="<%= item.anonymousID %>"><%= item.anonymousID %></option>
+      <% }); %>
+      </select>
+      <button type="submit">Filter</button>
+    </form>
 
     <br><br><br><br>
 
