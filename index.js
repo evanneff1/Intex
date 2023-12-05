@@ -23,6 +23,8 @@ app.use(
   })
 );
 
+app.use(express.static("public"));
+
 app.set("view engine", "ejs");
 
 const port = process.env.PORT || 3000;
