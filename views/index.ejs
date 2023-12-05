@@ -5,79 +5,69 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
-    <link rel="stylesheet" type="text/css" href="stylesheet.css">
-
+    <link rel="stylesheet" type="text/css" href="styles/styles.css">
 </head>
 
 <body>
-    <p>This is a webpage</p>
-    <form method="get" action="/accounts">
-        <button type="submit">Create Account</button>
-    </form>
-
-    <form method="get" action="/loginpage">
-        <button type="submit">Login</button>
-    </form>
-
-    <form method="get" action="/social">
-        <button type="submit">Social</button>
-    </form>
-
-    <form method="get" action="/report">
-        <button type="submit">Report</button>
-    </form>
-
-    <form method="get" action="/survey">
-        <button type="submit">Survey</button>
-    </form>
-
-    <h1>Our Purpose</h1>
-    <div>
-        <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus.
-            Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor.
-            Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi.
-        </p>
-    </div>
-
-    <div>
-        <iframe title="Class Project" width="600" height="373.5"
-            src="https://app.powerbi.com/view?r=eyJrIjoiYmRhZjFiZDMtZDdlNS00NGM3LWIzYzUtMDdhZTM5NmFjZjUzIiwidCI6ImNlZDQ1MmVhLTExNDktNDMyOS05YjE5LWVhNjc4MzI5ZGU3OSIsImMiOjZ9&embedImagePlaceholder=true"
-            frameborder="0" allowFullScreen="true"></iframe>
-    </div>
-
-    <div>
-        <h3>Big Ideas</h3>
-        <p>
+    <!-- Navigation Bar -->
+    <nav>
         <ul>
-            <li>big idea one</li>
-            <li>big idea two</li>
-            <li>big idea three</li>
+            <li><a href="/accounts">Create Account</a></li>
+            <li><a href="/loginpage">Login</a></li>
+            <li><a href="/social">Social</a></li>
+            <li><a href="/report">Report</a></li>
+            <li><a href="/survey">Survey</a></li>
         </ul>
-        </p>
+    </nav>
 
-        <h3>Recomendations</h3>
-        <p>
-        <ul>
-            <li>recomendation one</li>
-            <li>recomendation two</li>
-            <li>recomendation three</li>
-        </ul>
-        </p>
-    </div>
+    <header>
+        <h1>Our Purpose</h1>
+    </header>
 
-    <ul>
-        <% if(mycountrys && mycountrys.length> 0) { %>
-            <% mycountrys.forEach(function(country) { %>
-                <li>
-                    <%= country.anonID %>
-                </li> <!-- Replace 'name' with the actual property name -->
-                <% }); %>
-                    <% } else { %>
-                        <p>No countries found.</p>
-                        <% } %>
-    </ul>
+    <main>
+        <section class="purpose">
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit...
+            </p>
+        </section>
 
+        <section class="powerbi-report">
+            <iframe title="Class Project" width="600" height="373.5" src="https://app.powerbi.com/view?..."
+                frameborder="0" allowFullScreen="true"></iframe>
+        </section>
+
+        <section class="ideas">
+            <h3>Big Ideas</h3>
+            <ul>
+                <li>big idea one</li>
+                <li>big idea two</li>
+                <li>big idea three</li>
+            </ul>
+        </section>
+
+        <section class="recommendations">
+            <h3>Recommendations</h3>
+            <ul>
+                <li>recommendation one</li>
+                <li>recommendation two</li>
+                <li>recommendation three</li>
+            </ul>
+        </section>
+
+        <section class="country-list">
+            <ul>
+                <% if(mycountrys && mycountrys.length> 0) { %>
+                    <% mycountrys.forEach(function(country) { %>
+                        <li>
+                            <%= country.anonID %>
+                        </li>
+                        <% }); %>
+                            <% } else { %>
+                                <p>No countries found.</p>
+                                <% } %>
+            </ul>
+        </section>
+    </main>
 </body>
 
 </html>
