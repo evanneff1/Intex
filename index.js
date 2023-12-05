@@ -175,7 +175,7 @@ app.post("/submit-survey", async (req, res) => {
     const platformsArray = Array.isArray(platforms) ? platforms : [platforms];
 
     await knex.transaction(async (trx) => {
-      const anonID = await trx("main")
+      const insertResult = await trx("main")
         .insert({
           timestamp: trx.raw("current_timestamp"),
           age: Age,
@@ -199,10 +199,12 @@ app.post("/submit-survey", async (req, res) => {
           Location: "Provo",
         })
         .returning("anonymousID");
+      const anonID = insertResult[0].anonymousID; // Adjust based on actual structure
+
       console.log(anonID);
       if (platformsArray && platformsArray.length > 0) {
         const platformInserts = platformsArray.map((platform) => ({
-          anonID: anonID,
+          anonID: parseInt(anonID),
           platformNum: platform,
         }));
 
