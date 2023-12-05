@@ -218,17 +218,28 @@ app.get("/accounts", (req, res) => {
   res.render("accounts");
 });
 
-app.get("/report", (req, res) => {
-  knex
-    .select()
-    .from("main")
-    .then((items) => {
-      res.render("report", { intex_db: items });
-    })
-    .catch((err) => {
-      console.log(err);
-      res.status(500).json({ err });
-    });
+app.get("/report", async (req, res) => {
+  try {
+    const drop = req.query.dropdown; // Retrieve the dropdown value
+
+    let intex_db; // Declare intex_db variable outside the if-else blocks
+    
+    const drop_db = await knex.select().from("main");
+
+    if (drop == "All Users") {
+      // Fetch all data when dropdown value is "All Users"
+      intex_db = await knex.select().from("main");
+    } else {
+      // Fetch data based on the dropdown value (assuming it's 'anonymousID')
+      intex_db = await knex.select().from("main").where("anonymousID", drop);
+    }
+    drop_db.push("All Users");
+
+    res.render("report", { intex_db: intex_db, drop_db: drop_db });
+  } catch (error) {
+    console.error("Error:", error);
+    res.status(500).send("Internal Server Error");
+  }
 });
 
 app.get("/survey", (req, res) => {

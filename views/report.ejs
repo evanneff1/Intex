@@ -11,14 +11,17 @@
 
 
 <h1>Dropdown List from intex_db</h1>
-    <!-- This creates a drop down capable of listing all our unique anonymousID as options to filter the database. -->
-    <!-- <label for="dropdown">Select an option:</label>
-    <select id="dropdown" name="dropdown">
-    <option value="All Users" selected>All Users</option>
-    <% intex_db.forEach(item => { %>
-        <option value="<%= item.anonymousID %>"><%= item.anonymousID %></option>
-    <% }); %>
-    </select> -->
+   
+    <form action="/report" method="get">
+      <label for="dropdown">Select an option:</label>
+      <select id="dropdown" name="dropdown">
+      <option value="All Users" selected>All Users</option>
+      <% drop_db.forEach(item => { %>
+          <option value="<%= item.anonymousID %>"><%= item.anonymousID %></option>
+      <% }); %>
+      </select>
+      <button type="submit">Filter</button>
+    </form>
 
     <br><br><br><br>
 
@@ -81,184 +84,7 @@
       </table>
   </div>
 
-  <!-- Client-side JavaScript to filter based on  user selection -->
-  <!-- <script>
-      var dropdown = document.getElementById('dropdown');
-      var tableBody = document.getElementById('tableBody');
-      
-      dropdown.addEventListener('change', filter())
 
-          
-    function filter() {  
-          // Clear existing table rows
-          tableBody.innerHTML = '';
-
-          var selectedValue = dropdown.value;
-
-          // Populate the table based on the selected value
-          if (selectedValue == 'All Users') {
-                  tableBody.innerHTML =
-                  ("<% for (let iCount = 0; iCount < mycountry.length; iCount++) { %>"
-                    +"<tr>"
-                    +"<td><%= intex_db[iCount].anonymousID %></td>"
-                    +"<td><%= intex_db[iCount].timestamp %></td>"
-                    +"<td><%= intex_db[iCount].age %></td>"
-                    +"<td><%= intex_db[iCount].gender %></td>"
-                    +"<td><%= intex_db[iCount].relationshipStatus %></td>"
-                    +"<td><%= intex_db[iCount].occupationStatus %></td>"
-                    +"<td><%= intex_db[iCount].mediaUse %></td>"
-                    +"<td><%= intex_db[iCount].mediaDailyAvg %></td>"
-                    +"<td><%= intex_db[iCount].mediaWOPurpose %></td>"
-                    +"<td><%= intex_db[iCount].distractedBusy %></td>"
-                    +"<td><%= intex_db[iCount].restlessness %></td>"
-                    +"<td><%= intex_db[iCount].distractedGeneral %></td>"
-                    +"<td><%= intex_db[iCount].botheredWorry %></td>"
-                    +"<td><%= intex_db[iCount].concentration %></td>"
-                    +"<td><%= intex_db[iCount].comparison %></td>"
-                    +"<td><%= intex_db[iCount].compFeelings %></td>"
-                    +"<td><%= intex_db[iCount].validation %></td>"
-                    +"<td><%= intex_db[iCount].depressed %></td>"
-                    +"<td><%= intex_db[iCount].dailyInterestFluctuation %></td>"
-                    +"<td><%= intex_db[iCount].sleepIssues %></td>"
-                    +"<td><%= intex_db[iCount].location %></td>"
-                    +"</tr>"
-                    +"<% } %>")
-          } else {
-            let index = -1;
-            for (let iCount = 0; iCount < intex_db.length; iCount++) {
-              if (selectedValue == intex_db[iCount].anonymousID) {
-                  index = iCount
-                }
-            }
-            tableBody.innerHTML =     
-              ("<tr>"
-                +"<td><%= intex_db[index].anonymousID %></td>"
-                +"<td><%= intex_db[index].timestamp %></td>"
-                +"<td><%= intex_db[index].age %></td>"
-                +"<td><%= intex_db[index].gender %></td>"
-                +"<td><%= intex_db[index].relationshipStatus %></td>"
-                +"<td><%= intex_db[index].occupationStatus %></td>"
-                +"<td><%= intex_db[index].mediaUse %></td>"
-                +"<td><%= intex_db[index].mediaDailyAvg %></td>"
-                +"<td><%= intex_db[index].mediaWOPurpose %></td>"
-                +"<td><%= intex_db[index].distractedBusy %></td>"
-                +"<td><%= intex_db[index].restlessness %></td>"
-                +"<td><%= intex_db[index].distractedGeneral %></td>"
-                +"<td><%= intex_db[index].botheredWorry %></td>"
-                +"<td><%= intex_db[index].concentration %></td>"
-                +"<td><%= intex_db[index].comparison %></td>"
-                +"<td><%= intex_db[index].compFeelings %></td>"
-                +"<td><%= intex_db[index].validation %></td>"
-                +"<td><%= intex_db[index].depressed %></td>"
-                +"<td><%= intex_db[index].dailyInterestFluctuation %></td>"
-                +"<td><%= intex_db[index].sleepIssues %></td>"
-                +"<td><%= intex_db[index].location %></td>"
-                +"</tr>")
-          }
-    };
-  </script> -->
-
-    
-    
-    
-    <!-- This is a dynamically generated table. It will populate using the data stored within our intexDB on amazon RDS Postgres -->
-    <!-- <div>
-        <table style="width: 100%; background-color: antiquewhite; border: 1px solid black;">
-            <thead style="background-color: cornflowerblue; color: white;">
-              <tr>
-                <th style="text-align: left;">anonymousID</th>
-                <th style="text-align: left;">timestamp</th>
-                <th style="text-align: left;">age</th>
-                <th style="text-align: left;">gender</th>
-                <th style="text-align: left;">relationshipStatus</th>
-                <th style="text-align: left;">occupationStatus</th>
-                <th style="text-align: left;">mediaUse</th>
-                <th style="text-align: left;">mediaDailyAvg</th>
-                <th style="text-align: left;">mediaWOPurpose</th>
-                <th style="text-align: left;">distractedBusy</th>
-                <th style="text-align: left;">restlessness</th>
-                <th style="text-align: left;">distractedGeneral</th>
-                <th style="text-align: left;">botheredWorry</th>
-                <th style="text-align: left;">concentration</th>
-                <th style="text-align: left;">comparison</th>
-                <th style="text-align: left;">compFeelings</th>
-                <th style="text-align: left;">validation</th>
-                <th style="text-align: left;">depressed</th>
-                <th style="text-align: left;">dailyInterestFluctuation</th>
-                <th style="text-align: left;">sleepIssues</th>
-                <th style="text-align: left;">platformNumr</th>
-                <th style="text-align: left;">organizationNum</th>
-                <th style="text-align: left;">location</th>
-              </tr>
-            </thead>
-          -->
-
-            <!-- WORK ON THIS WHEN intex_db LOADED -->
-    <!--        <tbody style="font-family: Arial; font-size: 9pt;">
-            <% if (dropdown.options[dropdown.selectedIndex].value == "All Users") { %>
-                <% for (let iCount = 0; iCount < intex_db.length; iCount++) { %>
-                    <tr>
-                      <td><%= intex_db[iCount].anonymousID %></td>
-                      <td><%= intex_db[iCount].timestamp %></td>
-                      <td><%= intex_db[iCount].age %></td>
-                      <td><%= intex_db[iCount].gender %></td>
-                      <td><%= intex_db[iCount].relationshipStatus %></td>
-                      <td><%= intex_db[iCount].occupationStatus %></td>
-                      <td><%= intex_db[iCount].mediaUse %></td>
-                      <td><%= intex_db[iCount].mediaDailyAvg %></td>
-                      <td><%= intex_db[iCount].mediaWOPurpose %></td>
-                      <td><%= intex_db[iCount].distractedBusy %></td>
-                      <td><%= intex_db[iCount].restlessness %></td>
-                      <td><%= intex_db[iCount].distractedGeneral %></td>
-                      <td><%= intex_db[iCount].botheredWorry %></td>
-                      <td><%= intex_db[iCount].concentration %></td>
-                      <td><%= intex_db[iCount].comparison %></td>
-                      <td><%= intex_db[iCount].compFeelings %></td>
-                      <td><%= intex_db[iCount].validation %></td>
-                      <td><%= intex_db[iCount].depressed %></td>
-                      <td><%= intex_db[iCount].dailyInterestFluctuation %></td>
-                      <td><%= intex_db[iCount].sleepIssues %></td>
-                      <td><%= intex_db[iCount].location %></td>
-                    </tr>
-                <% } %>
-            
-            <% } else { %>
-              <% let index = -1; %>
-              <% for (let iCount = 0; iCount < intex_db.length; iCount++) { %>
-                <% if dropdown.options[dropdown.selectedIndex].value  == intex_db[iCount].anonymousID {
-                  index = iCount
-                } %>
-                
-                <tr>
-                  <td><%= intex_db[index].anonymousID %></td>
-                  <td><%= intex_db[index].timestamp %></td>
-                  <td><%= intex_db[index].age %></td>
-                  <td><%= intex_db[index].gender %></td>
-                  <td><%= intex_db[index].relationshipStatus %></td>
-                  <td><%= intex_db[index].occupationStatus %></td>
-                  <td><%= intex_db[index].mediaUse %></td>
-                  <td><%= intex_db[index].mediaDailyAvg %></td>
-                  <td><%= intex_db[index].mediaWOPurpose %></td>
-                  <td><%= intex_db[index].distractedBusy %></td>
-                  <td><%= intex_db[index].restlessness %></td>
-                  <td><%= intex_db[index].distractedGeneral %></td>
-                  <td><%= intex_db[index].botheredWorry %></td>
-                  <td><%= intex_db[index].concentration %></td>
-                  <td><%= intex_db[index].comparison %></td>
-                  <td><%= intex_db[index].compFeelings %></td>
-                  <td><%= intex_db[index].validation %></td>
-                  <td><%= intex_db[index].depressed %></td>
-                  <td><%= intex_db[index].dailyInterestFluctuation %></td>
-                  <td><%= intex_db[index].sleepIssues %></td>
-                  <td><%= intex_db[index].location %></td>
-                </tr>
-             
-            <% } %>
-            </tbody>
-
-        </table>
-    </div>
-  -->
 
 
 </body>
