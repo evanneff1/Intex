@@ -7,7 +7,6 @@ const session = require("express-session");
 const crypto = require("crypto");
 const secret = crypto.randomBytes(64).toString("hex");
 let username;
-let user;
 let password;
 const saltRounds = 10;
 const app = express();
@@ -76,8 +75,7 @@ app.post("/login", async (req, res) => {
     const user = await knex
       .select("username", "password")
       .from("accountManager")
-      .where("username", username)
-      .then(user);
+      .where("username", username);
 
     if (user.rows.length > 0) {
       const validPassword = await bcrypt.compare(
