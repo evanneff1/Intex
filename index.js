@@ -7,6 +7,7 @@ const session = require("express-session");
 const crypto = require("crypto");
 const secret = crypto.randomBytes(64).toString("hex");
 let username;
+let user;
 let password;
 const saltRounds = 10;
 const app = express();
