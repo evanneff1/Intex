@@ -46,8 +46,20 @@ app.get("/", (req, res) => {
     });
 });
 
-app.get("/account", (req, res) => {
-  res.render("account");
+app.get("/social", (req, res) => {
+  res.render("social_media");
+});
+
+app.get("/accounts", (req, res) => {
+  res.render("accounts");
+});
+
+app.get("/report", (req, res) => {
+  res.render("report");
+});
+
+app.get("/survey", (req, res) => {
+  res.render("survey");
 });
 
 app.listen(port, () => {
