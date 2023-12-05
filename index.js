@@ -159,7 +159,16 @@ app.get("/accounts", (req, res) => {
 });
 
 app.get("/report", (req, res) => {
-  res.render("report");
+  knex
+    .select()
+    .from("main")
+    .then((items) => {
+      res.render("report", { intex_db: items });
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json({ err });
+    });
 });
 
 app.get("/survey", (req, res) => {
