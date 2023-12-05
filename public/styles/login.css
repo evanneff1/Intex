@@ -3,7 +3,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: Arial, sans-serif;
+  font-family: "Raleway", sans-serif;
 }
 
 body {
@@ -15,12 +15,22 @@ body {
   font-size: 16px;
 }
 
-form {
+div {
   background: white;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  width: 300px;
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  width: 350px;
+}
+
+h1 {
+  color: #333;
+  margin-bottom: 20px;
+}
+
+form {
+  text-align: left;
 }
 
 label {
@@ -65,7 +75,7 @@ button:focus {
   outline: none;
 }
 
-/* Adding some space around form elements */
+/* Adjusting spacing for readability */
 br {
   line-height: 1.5;
 }
