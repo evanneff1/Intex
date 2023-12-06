@@ -226,17 +226,13 @@ app.get("/accounts", checkAuthentication, (req, res) => {
   res.render("accounts");
 });
 
-app.get("/reportpage", (req, res) => {
-  res.render("report");
-});
-
 app.get("/report", async (req, res) => {
   try {
-    const drop = req.query.dropdown; // Retrieve the dropdown value
+    const drop = req.query.dropdown || "All Users"; // Retrieve the dropdown value
 
     let intex_db; // Declare intex_db variable outside the if-else blocks
 
-    const drop_db = await knex.select().from("main");
+    drop_db = await knex.select().from("main");
 
     if (drop == "All Users") {
       // Fetch all data when dropdown value is "All Users"
