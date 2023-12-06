@@ -9,20 +9,24 @@
 </head>
 
 <body>
+
+    <!-- Profile Icon and Dropdown/Sidebar -->
+    <div class="profile-menu">
+        <img src="images/avatar.png" alt="Profile" class="profile-icon" onclick="toggleSidebar()">
+        <div class="sidebar" id="sidebar">
+            <a href="/login">Login</a>
+            <a href="/create-account">Create Account</a>
+            <!-- Add more links as needed -->
+        </div>
+    </div>
+    <!-- Overlay -->
+    <div class="overlay" id="overlay" onclick="toggleSidebar()"></div>
     <nav>
         <ul>
             <!-- <li><a href="/accounts">Create Account</a></li> -->
             <li><a href="/loginpage">Login</a></li>
             <li><a href="/survey">Survey</a></li>
         </ul>
-        <div class="profile-menu">
-            <div class="profile-icon" onclick="toggleDropdown()">👤</div>
-            <div class="dropdown-menu" id="dropdownMenu">
-                <a href="/login">Login</a>
-                <!-- <a href="/create-account">Create Account</a> -->
-
-            </div>
-        </div>
     </nav>
 
     <header>
@@ -76,13 +80,19 @@
     </main>
 </body>
 <script>
+    function toggleSidebar() {
+        var sidebar = document.getElementById("sidebar");
+        var overlay = document.getElementById("overlay");
 
-    function toggleDropdown() {
-        var dropdown = document.getElementById("dropdownMenu");
-        dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
+        if (sidebar.style.width === "250px") {
+            sidebar.style.width = "0";
+            overlay.style.display = "none";
+        } else {
+            sidebar.style.width = "250px";
+            overlay.style.display = "block";
+        }
     }
-
-
 </script>
+
 
 </html>
