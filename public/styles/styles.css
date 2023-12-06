@@ -7,7 +7,12 @@
 }
 
 body {
-  background-color: #f4f4f4;
+  /* background-color: #f4f4f4; */
+  background-image: url("../images/blob.jpg"); /* The path to your image file */
+  background-size: cover; /* Cover the entire space */
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  /* Removed the background-attachment property */
 }
 
 nav {
@@ -16,22 +21,6 @@ nav {
   text-align: center;
 }
 
-.splash-container {
-  position: relative;
-  background: #eff6ee; /* Base color, similar to the light green background */
-  overflow: hidden;
-}
-
-.splash-container::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-image: url("images/gradient2.jpg"); /* Path to your SVG or gradient */
-  opacity: 0.6; /* Adjust the opacity for the splash effect */
-}
 /* Profile Menu */
 .profile-menu {
   /* position: fixed; */
@@ -44,8 +33,8 @@ nav {
 
 .menu-icon {
   position: absolute; /* Or you can remove this line since static is the default */
-  top: 10px;
-  right: 20px;
+  top: 20px;
+  right: 5%;
   cursor: pointer;
   z-index: 10; /* Ensure it's above other content but not fixed */
 }
@@ -53,11 +42,24 @@ nav {
 .bar {
   display: block;
   width: 35px; /* Width of the hamburger icon */
-  height: 5px; /* Height of one bar */
-  background-color: #333; /* Color of the bars */
+  height: 3px; /* Height of one bar */
+  background-color: #7b7a7a; /* Color of the bars */
   margin: 6px 0; /* Spacing between the bars */
-  transition: 0.3s;
+  transition: transform 0.3s ease-in-out; /* Smooth transition for the movement */
 }
+
+/* Hover effect */
+.menu-icon:hover .bar:nth-child(1), /* First line */
+.menu-icon:hover .bar:nth-child(3) {
+  /* Third line */
+  transform: translateX(-10px); /* Move to the left */
+}
+
+.menu-icon:hover .bar:nth-child(2) {
+  /* Second (middle) line */
+  transform: translateX(10px); /* Move to the right */
+}
+
 /* Sidebar */
 .sidebar {
   height: 100%;
@@ -66,7 +68,7 @@ nav {
   z-index: 1005;
   top: 0;
   right: 0;
-  background-color: #1111119b;
+  background-color: #424141dc;
   overflow-x: hidden;
   transition: 0.5s;
   padding-top: 50px;
@@ -93,18 +95,105 @@ nav {
   height: 100%;
   top: 0;
   left: 0;
-  background: rgba(0, 0, 0, 0.7);
+  background: rgba(0, 0, 0, 0.457);
   z-index: 1003; /* Below sidebar */
+}
+
+.line {
+  height: 2px; /* This sets the thickness of your line */
+  width: 90%; /* This sets the line to cover 80% of the width of its container */
+  background-color: rgba(
+    128,
+    128,
+    128,
+    0.476
+  ); /* This sets the color of your line */
+  margin: 0 auto;
+  margin-bottom: 50px;
+}
+
+.big-container {
+  display: flex;
+}
+
+.bigidea {
+  width: 100%;
+  height: 90%;
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 5%;
+  /* margin-top: 5%; */
+  align-items: center;
+}
+
+.left-box,
+.right-box {
+  flex: 1;
+  height: 100%;
+}
+.left-box {
+  margin-right: 10px;
+  display: flex;
+  justify-content: right;
+  align-items: end;
+  flex-direction: column;
+}
+
+.left-box h2 {
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 100px;
+  color: #5c5a5a;
+  text-align: end;
+}
+
+.left-box h2 span {
+  font-size: 80px;
+  font-family: "Raleway", sans-serif;
+
+  /* font-family: "Bebas Neue", sans-serif; */
+}
+
+.right-box {
+  margin-left: 10px;
+  display: flex;
+  align-items: end;
+  justify-content: center;
+}
+
+.right-box img {
+  height: 70vh;
 }
 
 header {
   /* background-color: #fff; */
-  padding: 20px;
-  text-align: center;
+  /* padding: 20px; */
+  padding-left: 5%;
+  padding-top: 20px;
+  text-align: left;
   margin-bottom: 20px;
-  color: #333;
+  /* color: #7b7a7a; */
+  font-size: small;
 }
-
+header a {
+  text-decoration: none;
+  color: #7b7a7a;
+  transition: color 0.3s ease-in-out;
+}
+header a:hover {
+  color: #cfc8c8;
+}
+.survey-button {
+  padding: 10px;
+  background-color: rgb(51, 200, 148);
+  display: inline-block; /* Allows the div to behave like a button */
+  text-align: center; /* Centers the text inside the div */
+  cursor: pointer; /* Changes cursor to pointer to indicate it's clickable */
+  transition: background-color 0.3s; /* Smooth transition for color and background */
+}
+.survey-button a {
+  color: rgb(89, 89, 89);
+  text-decoration: none;
+}
 main {
   width: 80%;
   margin: 0 auto;
@@ -114,8 +203,20 @@ main section {
   margin-bottom: 20px;
   background-color: white;
   padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  /* border-radius: 10px; */
+  box-shadow: 0 5px 15px rgba(131, 77, 77, 0.1);
+}
+.powerbi {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.powerbi-report {
+  margin-bottom: 20px;
+  background-color: white;
+  padding: 20px;
+  /* border-radius: 10px; */
+  box-shadow: 0 5px 15px rgba(131, 77, 77, 0.1);
 }
 
 iframe {
@@ -143,13 +244,132 @@ ul li {
 }
 
 /* Basic Reset */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Raleway", sans-serif;
+.fullscreen-background {
+  position: fixed; /* Use fixed to ensure the image stays put even when scrolling */
+  top: 0;
+  left: 0;
+  width: 100vw; /* Viewport width */
+  height: 100vh; /* Viewport height */
+  z-index: -1; /* Send the image to the back */
+  object-fit: cover; /* Cover the area without stretching the image */
+}
+/* Set up the animation for the original text moving down and fading out */
+@keyframes moveDownAndFadeOut {
+  to {
+    transform: translateY(100%);
+    opacity: 0;
+  }
 }
 
-body {
-  background-color: #f4f4f4;
+/* Set up the animation for the new text coming from the top to the original place */
+@keyframes moveUpAndFadeIn {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.animated-link {
+  display: inline-block;
+  position: relative;
+  overflow: hidden; /* Hide the animated content when it goes out of bounds */
+  text-decoration: none; /* Optional: removes the underline from the link */
+  color: #000; /* Initial color of your text */
+  vertical-align: top; /* Keep the baseline of the link at the top */
+  transition: color 0.3s ease-in-out; /* Color transition for hover effect */
+}
+
+/* The content of the link */
+.animated-link span {
+  display: block;
+}
+
+/* The animation effect on hover for original text */
+.animated-link:hover span {
+  animation: moveDownAndFadeOut 0.5s ease-in-out forwards;
+}
+
+/* Color change on hover */
+.animated-link:hover {
+  color: rgb(5, 157, 154); /* New color on hover */
+}
+
+/* Duplicate the text for the animation */
+.animated-link::after {
+  content: attr(data-text); /* Use the data-text attribute to set the text */
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  transition: transform 0.5s ease-in-out;
+  transform: translateY(0);
+  opacity: 1;
+  color: inherit; /* Ensure the color matches the link */
+}
+
+/* The animation effect on hover for new text */
+.animated-link:hover::after {
+  animation: moveUpAndFadeIn 0.5s ease-in-out forwards;
+}
+
+.card-container {
+  display: flex;
+  justify-content: space-around; /* Distribute cards evenly */
+  margin: 100px auto;
+  width: 80%;
+}
+
+.card {
+  width: 300px; /* Card width */
+  height: 400px; /* Card height */
+  perspective: 1000px;
+}
+
+.card-front,
+.card-back {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  backface-visibility: hidden;
+  transition: transform 0.6s; /* Rounded corners */
+  overflow: hidden; /* Ensure content fits card shape */
+}
+
+.card-front {
+  background-color: #fff;
+}
+
+.card-front img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Cover the card area */
+  filter: brightness(70%); /* Darken image */
+}
+
+.text-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white; /* Text color */
+  text-align: center;
+}
+
+.card-back {
+  background-color: #f1f1f1; /* Card back color */
+  transform: rotateY(180deg);
+  padding: 20px; /* Padding for the text */
+}
+
+.card.flipped .card-front {
+  transform: rotateY(180deg);
+}
+
+.card.flipped .card-back {
+  transform: rotateY(0);
 }

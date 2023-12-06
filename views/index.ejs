@@ -6,77 +6,100 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
     <link rel="stylesheet" type="text/css" href="styles/styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat&family=Raleway&display=swap"
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Comfortaa&family=Montserrat&family=Raleway&display=swap"
         rel="stylesheet">
 </head>
 
 <body>
-    <div class="splash-container">
-        <div class="profile-menu">
-            <div class="menu-icon" onclick="toggleSidebar()">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </div>
 
-            <div class="sidebar" id="sidebar">
-                <a href="/loginpage">Login</a>
-                <a href="/survey">Survey</a>
-                <!-- Add more links as needed -->
+    <!-- <img src="images/background.jpg" width="100%" class="fullscreen-background"> -->
+    <div class="profile-menu">
+        <div class="menu-icon" onclick="toggleSidebar()">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+
+        <div class="sidebar" id="sidebar">
+            <a href="/loginpage">Login</a>
+            <a href="/survey">Survey</a>
+            <!-- Add more links as needed -->
+        </div>
+    </div>
+    <!-- Overlay -->
+    <div class="overlay" id="overlay" onclick="toggleSidebar()"></div>
+
+    <header>
+        <a href="/">
+            <h1>Provo Media Health</h1>
+        </a>
+    </header>
+    <div class="line"></div>
+    <main>
+        <div class="big-container">
+            <div class="bigidea">
+                <div class="left-box">
+                    <h2> Balancing life <span>beyond the screen</span></h2>
+                    <div class="survey-button"> <a href="/survey" class="animated-link"
+                            data-text="Take our anonymous survey here">
+                            <span>Take our anonymous survey here</span>
+                        </a></div>
+
+
+
+                </div>
+                <div class="right-box">
+                    <img src="/images/face.jpg">
+
+                </div>
             </div>
         </div>
-        <!-- Overlay -->
-        <div class="overlay" id="overlay" onclick="toggleSidebar()"></div>
-
-        <header>
-            <h1>Provo Media Health</h1>
-        </header>
-
-        <main>
-            <section class="purpose">
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit...
-                </p>
-            </section>
-
-            <section class="powerbi-report">
-                <iframe title="Report Section" width="1024" height="700"
-                    src="https://app.powerbi.com/view?r=eyJrIjoiYjM5YjZkNjEtZmY0YS00MmRlLWI0MzYtYWQ3MGNiMzc1YzllIiwidCI6ImNlZDQ1MmVhLTExNDktNDMyOS05YjE5LWVhNjc4MzI5ZGU3OSIsImMiOjZ9"
-                    frameborder="0" allowFullScreen="true"></iframe>
-            </section>
-
-            <section class="ideas">
-                <h3>Big Ideas</h3>
-                <ul>
-                    <li>big idea one</li>
-                    <li>big idea two</li>
-                    <li>big idea three</li>
-                </ul>
-            </section>
-
-            <section class="recommendations">
-                <h3>Recommendations</h3>
-                <ul>
-                    <li>recommendation one</li>
-                    <li>recommendation two</li>
-                    <li>recommendation three</li>
-                </ul>
-            </section>
-
-            <section class="country-list">
-                <ul>
-                    <% if(mycountrys && mycountrys.length> 0) { %>
-                        <% mycountrys.forEach(function(country) { %>
-                            <li>
-                                <%= country.username %>
-                            </li>
-                            <% }); %>
-                                <% } else { %>
-                                    <p>No countries found.</p>
-                                    <% } %>
-                </ul>
-            </section>
-        </main>
+        <section class="purpose">
+            <h2>
+                This is the big idea </h2>
+            <p>
+                Here is some text explaining the big idea...
+            </p>
+        </section>
+    </main>
+    <div class="card-container">
+        <div class="card" onclick="this.classList.toggle('flipped');">
+            <div class="card-front">
+                <img src="/images/women.jpg" alt="Image 1">
+                <div class="text-overlay">Text Over Image</div>
+            </div>
+            <div class="card-back">
+                More information here...
+            </div>
+        </div>
+        <div class="card" onclick="this.classList.toggle('flipped');">
+            <div class="card-front">
+                <img src="/images/male.jpg" alt="Image 1">
+                <div class="text-overlay">Text Over Image</div>
+            </div>
+            <div class="card-back">
+                More information here...
+            </div>
+        </div>
+        <div class="card" onclick="this.classList.toggle('flipped');">
+            <div class="card-front">
+                <img src="/images/person.jpg" alt="Image 1">
+                <div class="text-overlay">Text Over Image</div>
+            </div>
+            <div class="card-back">
+                More information here...
+            </div>
+        </div>
+    </div>
+    <div class="powerbi">
+        <section class="powerbi-report">
+            <iframe title="Report Section" width="1024" height="700"
+                src="https://app.powerbi.com/view?r=eyJrIjoiYjM5YjZkNjEtZmY0YS00MmRlLWI0MzYtYWQ3MGNiMzc1YzllIiwidCI6ImNlZDQ1MmVhLTExNDktNDMyOS05YjE5LWVhNjc4MzI5ZGU3OSIsImMiOjZ9"
+                frameborder="0" allowFullScreen="true"></iframe>
+        </section>
     </div>
 </body>
 <script>
