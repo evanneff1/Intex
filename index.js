@@ -237,14 +237,14 @@ app.get("/report", checkAuthentication, async (req, res) => {
 
     let intex_db; // Declare intex_db variable outside the if-else blocks
 
-    drop_db = await knex.select().from("main");
+    drop_db = await knex.select().from("main").orderBy("anonID", "desc");
 
     if (drop == "All Users") {
       // Fetch all data when dropdown value is "All Users"
-      intex_db = await knex.select().from("main");
+      intex_db = await knex.select().from("main").orderBy("anonID", "desc");
     } else {
       // Fetch data based on the dropdown value (assuming it's 'anonymousID')
-      intex_db = await knex.select().from("main").where("anonymousID", drop);
+      intex_db = await knex.select().from("main").where("anonymousID", drop).orderBy("anonID", "desc");
     }
     drop_db.push("All Users");
 
