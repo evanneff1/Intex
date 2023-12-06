@@ -1,92 +1,239 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    /* Basic Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background-color: #f4f4f4;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+    }
+
+    h1 {
+      color: #333;
+      margin-bottom: 20px;
+    }
+
+    form {
+      margin-bottom: 20px;
+    }
+
+    label {
+      margin-right: 10px;
+    }
+
+    select,
+    button {
+      padding: 5px 10px;
+      margin-right: 10px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+    }
+
+    button {
+      background-color: #007bff;
+      color: white;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background-color: antiquewhite;
+      border: 1px solid black;
+    }
+
+    th,
+    td {
+      text-align: left;
+      padding: 8px;
+    }
+
+    thead {
+      background-color: cornflowerblue;
+      color: white;
+    }
+  </style>
 </head>
+
 <body>
-<!-- LOG IN VERIFICATION -->
+  <!-- LOG IN VERIFICATION -->
 
 
-<h1>Dropdown List from intex_db</h1>
-   
-    <form action="/report" method="get">
-      <label for="dropdown">Select an option:</label>
-      <select id="dropdown" name="dropdown">
+  <h1>Dropdown List from intex_db</h1>
+
+  <form action="/report" method="get">
+    <label for="dropdown">Select an option:</label>
+    <select id="dropdown" name="dropdown">
       <option value="All Users" selected>All Users</option>
-      <% drop_db.forEach(item => { %>
-          <option value="<%= item.anonymousID %>"><%= item.anonymousID %></option>
-      <% }); %>
-      </select>
-      <button type="submit">Filter</button>
-    </form>
+      <% drop_db.forEach(item=> { %>
+        <option value="<%= item.anonymousID %>">
+          <%= item.anonymousID %>
+        </option>
+        <% }); %>
+    </select>
+    <button type="submit">Filter</button>
+  </form>
+  <button onclick="sortTable()">Sort by Anonymous ID</button>
 
-    <br><br><br><br>
 
-    <div>
-      <table style="width: 100%; background-color: antiquewhite; border: 1px solid black;">
-          <thead style="background-color: cornflowerblue; color: white;">
-            <tr>
-              <th style="text-align: left;">anonymousID</th>
-              <th style="text-align: left;">timestamp</th>
-              <th style="text-align: left;">age</th>
-              <th style="text-align: left;">gender</th>
-              <th style="text-align: left;">relationshipStatus</th>
-              <th style="text-align: left;">occupationStatus</th>
-              <th style="text-align: left;">mediaUse</th>
-              <th style="text-align: left;">mediaDailyAvg</th>
-              <th style="text-align: left;">mediaWOPurpose</th>
-              <th style="text-align: left;">distractedBusy</th>
-              <th style="text-align: left;">restlessness</th>
-              <th style="text-align: left;">distractedGeneral</th>
-              <th style="text-align: left;">botheredWorry</th>
-              <th style="text-align: left;">concentration</th>
-              <th style="text-align: left;">comparison</th>
-              <th style="text-align: left;">compFeelings</th>
-              <th style="text-align: left;">validation</th>
-              <th style="text-align: left;">depressed</th>
-              <th style="text-align: left;">dailyInterestFluctuation</th>
-              <th style="text-align: left;">sleepIssues</th>
-              <th style="text-align: left;">platformNumr</th>
-              <th style="text-align: left;">organizationNum</th>
-              <th style="text-align: left;">location</th>
-            </tr>
-          </thead>
-          <tbody style="font-family: Arial; font-size: 9pt;" id="tableBody" name="tableBody">
-            <% for (let iCount = 0; iCount < intex_db.length; iCount++) { %>
-            <tr>
-              <td><%= intex_db[iCount].anonymousID %></td>
-              <td><%= intex_db[iCount].timestamp %></td>
-              <td><%= intex_db[iCount].age %></td>
-              <td><%= intex_db[iCount].gender %></td>
-              <td><%= intex_db[iCount].relationshipStatus %></td>
-              <td><%= intex_db[iCount].occupationStatus %></td>
-              <td><%= intex_db[iCount].mediaUse %></td>
-              <td><%= intex_db[iCount].mediaDailyAvg %></td>
-              <td><%= intex_db[iCount].mediaWOPurpose %></td>
-              <td><%= intex_db[iCount].distractedBusy %></td>
-              <td><%= intex_db[iCount].restlessness %></td>
-              <td><%= intex_db[iCount].distractedGeneral %></td>
-              <td><%= intex_db[iCount].botheredWorry %></td>
-              <td><%= intex_db[iCount].concentration %></td>
-              <td><%= intex_db[iCount].comparison %></td>
-              <td><%= intex_db[iCount].compFeelings %></td>
-              <td><%= intex_db[iCount].validation %></td>
-              <td><%= intex_db[iCount].depressed %></td>
-              <td><%= intex_db[iCount].dailyInterestFluctuation %></td>
-              <td><%= intex_db[iCount].sleepIssues %></td>
-              <td><%= intex_db[iCount].location %></td>
-            </tr>
-            <% } %>
-          </tbody>
-      </table>
+  <br><br><br><br>
+
+  <div>
+    <table style="width: 100%; background-color: antiquewhite; border: 1px solid black;">
+      <thead style="background-color: cornflowerblue; color: white;">
+        <tr>
+          <th style="text-align: left;">anonymousID</th>
+          <th style="text-align: left;">timestamp</th>
+          <th style="text-align: left;">age</th>
+          <th style="text-align: left;">gender</th>
+          <th style="text-align: left;">relationshipStatus</th>
+          <th style="text-align: left;">occupationStatus</th>
+          <th style="text-align: left;">mediaUse</th>
+          <th style="text-align: left;">mediaDailyAvg</th>
+          <th style="text-align: left;">mediaWOPurpose</th>
+          <th style="text-align: left;">distractedBusy</th>
+          <th style="text-align: left;">restlessness</th>
+          <th style="text-align: left;">distractedGeneral</th>
+          <th style="text-align: left;">botheredWorry</th>
+          <th style="text-align: left;">concentration</th>
+          <th style="text-align: left;">comparison</th>
+          <th style="text-align: left;">compFeelings</th>
+          <th style="text-align: left;">validation</th>
+          <th style="text-align: left;">depressed</th>
+          <th style="text-align: left;">dailyInterestFluctuation</th>
+          <th style="text-align: left;">sleepIssues</th>
+          <th style="text-align: left;">platformNumr</th>
+          <th style="text-align: left;">organizationNum</th>
+          <th style="text-align: left;">location</th>
+        </tr>
+      </thead>
+      <tbody style="font-family: Arial; font-size: 9pt;" id="tableBody" name="tableBody">
+        <% for (let iCount=0; iCount < intex_db.length; iCount++) { %>
+          <tr>
+            <td>
+              <%= intex_db[iCount].anonymousID %>
+            </td>
+            <td>
+              <%= intex_db[iCount].timestamp %>
+            </td>
+            <td>
+              <%= intex_db[iCount].age %>
+            </td>
+            <td>
+              <%= intex_db[iCount].gender %>
+            </td>
+            <td>
+              <%= intex_db[iCount].relationshipStatus %>
+            </td>
+            <td>
+              <%= intex_db[iCount].occupationStatus %>
+            </td>
+            <td>
+              <%= intex_db[iCount].mediaUse %>
+            </td>
+            <td>
+              <%= intex_db[iCount].mediaDailyAvg %>
+            </td>
+            <td>
+              <%= intex_db[iCount].mediaWOPurpose %>
+            </td>
+            <td>
+              <%= intex_db[iCount].distractedBusy %>
+            </td>
+            <td>
+              <%= intex_db[iCount].restlessness %>
+            </td>
+            <td>
+              <%= intex_db[iCount].distractedGeneral %>
+            </td>
+            <td>
+              <%= intex_db[iCount].botheredWorry %>
+            </td>
+            <td>
+              <%= intex_db[iCount].concentration %>
+            </td>
+            <td>
+              <%= intex_db[iCount].comparison %>
+            </td>
+            <td>
+              <%= intex_db[iCount].compFeelings %>
+            </td>
+            <td>
+              <%= intex_db[iCount].validation %>
+            </td>
+            <td>
+              <%= intex_db[iCount].depressed %>
+            </td>
+            <td>
+              <%= intex_db[iCount].dailyInterestFluctuation %>
+            </td>
+            <td>
+              <%= intex_db[iCount].sleepIssues %>
+            </td>
+            <td>
+              <%= intex_db[iCount].location %>
+            </td>
+          </tr>
+          <% } %>
+      </tbody>
+    </table>
   </div>
 
 
 
 
 </body>
+
+<script>
+  function sortTable() {
+    var table, rows, switching, i, x, y, shouldSwitch;
+    table = document.getElementById("tableBody");
+    switching = true;
+    // Make a loop that will continue until no switching has been done
+    while (switching) {
+      // Start by saying: no switching is done
+      switching = false;
+      rows = table.rows;
+      // Loop through all table rows (except the first, which contains table headers)
+      for (i = 0; i < (rows.length - 1); i++) {
+        // Start by saying there should be no switching
+        shouldSwitch = false;
+        // Get the two elements you want to compare, one from current row and one from the next
+        x = rows[i].getElementsByTagName("TD")[0];
+        y = rows[i + 1].getElementsByTagName("TD")[0];
+        // Check if the two rows should switch place
+        if (Number(x.innerHTML) > Number(y.innerHTML)) {
+          // If so, mark as a switch and break the loop
+          shouldSwitch = true;
+          break;
+        }
+      }
+      if (shouldSwitch) {
+        // If a switch has been marked, make the switch and mark that a switch has been done
+        rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+        switching = true;
+      }
+    }
+  }
+</script>
+
 </html>
