@@ -15,6 +15,14 @@
             <li><a href="/loginpage">Login</a></li>
             <li><a href="/survey">Survey</a></li>
         </ul>
+        <div class="profile-menu">
+            <div class="profile-icon" onclick="toggleDropdown()">👤</div>
+            <div class="dropdown-menu" id="dropdownMenu">
+                <a href="/login">Login</a>
+                <!-- <a href="/create-account">Create Account</a> -->
+
+            </div>
+        </div>
     </nav>
 
     <header>
@@ -67,5 +75,14 @@
         </section>
     </main>
 </body>
+<script>
+
+    function toggleDropdown() {
+        var dropdown = document.getElementById("dropdownMenu");
+        dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
+    }
+
+
+</script>
 
 </html>
