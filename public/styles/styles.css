@@ -11,49 +11,62 @@ body {
 }
 
 nav {
-  background-color: #007bff;
+  /* background-color: #007bff; */
   padding: 10px 0;
   text-align: center;
 }
 
+.splash-container {
+  position: relative;
+  background: #eff6ee; /* Base color, similar to the light green background */
+  overflow: hidden;
+}
+
+.splash-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url("images/gradient2.jpg"); /* Path to your SVG or gradient */
+  opacity: 0.6; /* Adjust the opacity for the splash effect */
+}
 /* Profile Menu */
 .profile-menu {
-  position: fixed;
+  /* position: fixed; */
   top: 10px;
+  width: 100%;
   right: 10px;
   cursor: pointer;
   z-index: 1001; /* Above overlay and sidebar */
 }
 
 .menu-icon {
-  display: block;
-  position: fixed;
+  position: absolute; /* Or you can remove this line since static is the default */
   top: 10px;
-  right: 10px;
-  width: 35px; /* Width of the hamburger icon */
-  height: 30px; /* Height of the hamburger icon */
-  z-index: 1001; /* Above overlay and sidebar */
+  right: 20px;
   cursor: pointer;
+  z-index: 10; /* Ensure it's above other content but not fixed */
 }
 
 .bar {
   display: block;
-  width: 100%;
-  height: 4px; /* Height of one bar */
+  width: 35px; /* Width of the hamburger icon */
+  height: 5px; /* Height of one bar */
   background-color: #333; /* Color of the bars */
   margin: 6px 0; /* Spacing between the bars */
   transition: 0.3s;
 }
-
 /* Sidebar */
 .sidebar {
   height: 100%;
   width: 0;
   position: fixed;
-  z-index: 1000;
+  z-index: 1005;
   top: 0;
   right: 0;
-  background-color: #111;
+  background-color: #1111119b;
   overflow-x: hidden;
   transition: 0.5s;
   padding-top: 50px;
@@ -63,7 +76,7 @@ nav {
   padding: 8px 8px 8px 32px;
   text-decoration: none;
   font-size: 25px;
-  color: #818181;
+  color: rgb(118, 184, 134);
   display: block;
   transition: 0.3s;
 }
@@ -81,29 +94,15 @@ nav {
   top: 0;
   left: 0;
   background: rgba(0, 0, 0, 0.7);
-  z-index: 1000; /* Below sidebar */
-}
-
-nav ul {
-  list-style: none;
-}
-
-nav ul li {
-  display: inline;
-  margin-right: 20px;
-}
-
-nav ul li a {
-  color: white;
-  text-decoration: none;
-  font-weight: bold;
+  z-index: 1003; /* Below sidebar */
 }
 
 header {
-  background-color: #fff;
+  /* background-color: #fff; */
   padding: 20px;
   text-align: center;
   margin-bottom: 20px;
+  color: #333;
 }
 
 main {
@@ -121,8 +120,9 @@ main section {
 
 iframe {
   width: 100%;
-  max-width: 600px;
-  height: 373.5px;
+  /* max-width: 1000px; */
+  /* height: 600.5px; */
+  max-height: 804;
   border: none;
 }
 
@@ -140,4 +140,16 @@ ul li {
 .recommendations ul,
 .country-list ul {
   text-align: left;
+}
+
+/* Basic Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Raleway", sans-serif;
+}
+
+body {
+  background-color: #f4f4f4;
 }
