@@ -83,7 +83,7 @@ app.post("/login", async (req, res) => {
         req.session.user = {
           username: user.username,
         };
-        res.render("report");
+        res.render("admin");
       } else {
         res.status(400).send("Invalid username or password");
       }
@@ -143,6 +143,7 @@ function checkAuthentication(req, res, next) {
     res.render("login");
   }
 }
+
 app.post("/submit-survey", async (req, res) => {
   try {
     const {
@@ -222,11 +223,15 @@ app.get("/loginpage", (req, res) => {
   res.render("login");
 });
 
+app.get("/admin", checkAuthentication, (req, res) => {
+  res.render("admin");
+});
+
 app.get("/accounts", checkAuthentication, (req, res) => {
   res.render("accounts");
 });
 
-app.get("/report", async (req, res) => {
+app.get("/report", checkAuthentication, async (req, res) => {
   try {
     const drop = req.query.dropdown || "All Users"; // Retrieve the dropdown value
 

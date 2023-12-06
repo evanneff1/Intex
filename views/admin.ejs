@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home</title>
+  <link rel="stylesheet" type="text/css" href="styles/styles.css">
+</head>
+
+<body>
+  <nav>
+    <ul>
+      <li><a href="/accounts">Create Account</a></li>
+      <li><a href="/loginpage">Login</a></li>
+      <li><a href="/report">Report</a></li>
+      <li><a href="/survey">Survey</a></li>
+    </ul>
+  </nav>
+
+  <header>
+    <h1>Admin</h1>
+  </header>
+
+  <main>
+    <section class="purpose">
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit...
+      </p>
+    </section>
+
+
+    <section class="ideas">
+      <h3>Big Ideas</h3>
+      <ul>
+        <li>big idea one</li>
+        <li>big idea two</li>
+        <li>big idea three</li>
+      </ul>
+    </section>
+
+    <section class="recommendations">
+      <h3>Recommendations</h3>
+      <ul>
+        <li>recommendation one</li>
+        <li>recommendation two</li>
+        <li>recommendation three</li>
+      </ul>
+    </section>
+
+    <section class="country-list">
+      <ul>
+        <% if(mycountrys && mycountrys.length> 0) { %>
+          <% mycountrys.forEach(function(country) { %>
+            <li>
+              <%= country.username %>
+            </li>
+            <% }); %>
+              <% } else { %>
+                <p>No countries found.</p>
+                <% } %>
+      </ul>
+    </section>
+  </main>
+</body>
+
+</html>
