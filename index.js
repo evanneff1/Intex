@@ -145,6 +145,8 @@ function checkAuthentication(req, res, next) {
 }
 
 app.post("/submit-survey", async (req, res) => {
+  console.log(req.body); // Log the entire body to see what is being received
+
   try {
     const {
       Age,
