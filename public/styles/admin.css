@@ -13,6 +13,7 @@ body {
   background-position: center; /* Center the image */
   background-repeat: no-repeat; /* Do not repeat the image */
   /* Removed the background-attachment property */
+  height: 100vh;
 }
 
 nav {
@@ -173,27 +174,28 @@ header {
   margin-bottom: 20px;
   /* color: #7b7a7a; */
   font-size: small;
+  display: flex;
+  justify-content: space-between;
+  width: 55%;
 }
-header a {
+header h1 {
   text-decoration: none;
   color: #7b7a7a;
-  transition: color 0.3s ease-in-out;
 }
-header a:hover {
-  color: #cfc8c8;
+
+header h2 {
+  text-decoration: none;
+  color: #af4c4c;
+  font-size: 2em;
 }
+
 .survey-button {
   padding: 10px;
   background-color: rgb(51, 200, 148);
   display: inline-block; /* Allows the div to behave like a button */
   text-align: center; /* Centers the text inside the div */
   cursor: pointer; /* Changes cursor to pointer to indicate it's clickable */
-  transition: background-color 0.3s ease-in-out; /* Smooth transition for color and background */
-  transition: color 0.3s ease-in-out; /* Smooth transition for color and background */
-}
-
-.survey-button:hover {
-  color: white;
+  transition: background-color 0.3s; /* Smooth transition for color and background */
 }
 .survey-button a {
   color: rgb(89, 89, 89);
@@ -228,7 +230,22 @@ iframe {
   width: 100%;
   /* max-width: 1000px; */
   /* height: 600.5px; */
-  max-height: 804;
+  max-height: 1000;
+  border: none;
+}
+
+/* Optional: Additional media queries for finer control */
+@media (max-width: 768px) {
+  .powerbi-report iframe {
+    height: 50vh; /* Adjust height for smaller screens */
+  }
+}
+
+iframe {
+  width: 100%;
+  /* max-width: 1000px; */
+  /* height: 600.5px; */
+  /* max-height: 1004; */
   border: none;
 }
 
@@ -300,7 +317,7 @@ ul li {
 
 /* Color change on hover */
 .animated-link:hover {
-  color: rgb(5, 157, 154); /* New color on hover */
+  color: rgb(255, 255, 255); /* New color on hover */
 }
 
 /* Duplicate the text for the animation */
@@ -336,9 +353,6 @@ ul li {
   perspective: 1000px;
   transition: transform 0.5s ease-in-out;
 }
-.card:hover {
-  transform: rotateY(30deg);
-}
 
 .card-front,
 .card-back {
@@ -352,6 +366,9 @@ ul li {
 
 .card-front {
   background-color: #fff;
+}
+.card:hover {
+  transform: rotateY(30deg);
 }
 
 .card-front img {
@@ -383,6 +400,7 @@ ul li {
 .card.flipped .card-back {
   transform: rotateY(0);
 }
+
 @media (max-width: 800px) {
   .left-box,
   .right-box {
@@ -402,10 +420,7 @@ ul li {
     width: auto; /* Maintain aspect ratio */
     object-fit: contain; /* Adjust this as needed */
   }
-  main section {
-    margin-top: 50px;
-    margin-bottom: 20px;
-  }
+
   .left-box h2 {
     font-size: 60px; /* Smaller font size for smaller screens */
   }
@@ -418,6 +433,10 @@ ul li {
   }
   main {
     width: 85%;
+  }
+  main section {
+    margin-top: 50px;
+    margin-bottom: 20px;
   }
   .big-container {
     margin-bottom: 30px;
@@ -436,8 +455,5 @@ ul li {
 
   .card-container {
     perspective: none; /* Disable perspective if you have it */
-  }
-  .text-overlay {
-    font-size: smaller;
   }
 }

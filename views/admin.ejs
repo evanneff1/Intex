@@ -4,32 +4,74 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Home</title>
-  <link rel="stylesheet" type="text/css" href="styles/styles.css">
+  <title>Admin Page</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Comfortaa&family=Montserrat&family=Raleway&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="/styles/admin.css">
+  <style>
+
+  </style>
 </head>
 
 <body>
   <form id="logout-form" action="/logout" method="post" style="display: none;">
     <!-- You can add hidden inputs here if needed -->
   </form>
-  <nav>
-    <ul>
-      <li><a href="/accounts">Create Account</a></li>
-      <li><a href="#" onclick="document.getElementById('logout-form').submit();">Logout</a></li>
-      <li><a href="/report">Report</a></li>
-      <li><a href="/survey">Survey</a></li>
-      <li><a href="/accountview">Edit Accounts</a></li>
-    </ul>
-  </nav>
+
+
+  <div class="profile-menu">
+    <div class="menu-icon" onclick="toggleSidebar()">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </div>
+
+    <div class="sidebar" id="sidebar">
+      <a href="#" onclick="document.getElementById('logout-form').submit();">Logout</a>
+      <a href="/accounts">Create Account</a>
+      <a href="/accountview">Edit Accounts</a>
+      <a href="/report">Report</a>
+      <a href="/survey">Survey</a>
+      <!-- Add more links as needed -->
+    </div>
+  </div>
+  <!-- Overlay -->
+  <div class="overlay" id="overlay" onclick="toggleSidebar()"></div>
 
   <header>
-    <h1>Admin</h1>
+    <h1>Provo Media Health</h1>
+    <h2>Admin Page</h2>
   </header>
+  <div class="line"></div>
+
 
   <main>
-
+    <div class="powerbi">
+      <section class="powerbi-report">
+        <iframe title="Intex" width="1000" height="703.5"
+          src="https://app.powerbi.com/view?r=eyJrIjoiYjM5YjZkNjEtZmY0YS00MmRlLWI0MzYtYWQ3MGNiMzc1YzllIiwidCI6ImNlZDQ1MmVhLTExNDktNDMyOS05YjE5LWVhNjc4MzI5ZGU3OSIsImMiOjZ9"
+          frameborder="0" allowFullScreen="true"></iframe>
+      </section>
+    </div>
 
   </main>
 </body>
+<script>
+  function toggleSidebar() {
+    var sidebar = document.getElementById("sidebar");
+    var overlay = document.getElementById("overlay");
+
+    if (sidebar.style.width === "250px") {
+      sidebar.style.width = "0";
+      overlay.style.display = "none";
+    } else {
+      sidebar.style.width = "250px";
+      overlay.style.display = "block";
+    }
+  }
+</script>
 
 </html>

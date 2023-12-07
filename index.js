@@ -108,11 +108,13 @@ app.post("/register", checkAuthentication, async (req, res) => {
     console.log("Username:", new_username, "Password:", new_password);
 
     if (!new_password) {
-      return res.status(400).send("Password is required");
+      res.render("account", { message: "Password is required" });
+      // return res.status(400).send("Password is required");
     }
 
     if (new_password != passwordConf) {
-      return res.status(400).send("Passwords need to match");
+      res.render("account", { message: "Passwords need to match" });
+      // return res.status(400).send("Passwords need to match");
     }
 
     const userExists = await knex
@@ -122,7 +124,8 @@ app.post("/register", checkAuthentication, async (req, res) => {
 
     // console.log(userExists);
     if (userExists == "[]") {
-      return res.status(400).send("Username already taken.");
+      res.render("account", { message: "Username already taken" });
+      // return res.status(400).send("Username already taken.");
     }
 
     const hashPass = await bcrypt.hash(new_password, saltRounds);
@@ -134,7 +137,8 @@ app.post("/register", checkAuthentication, async (req, res) => {
     res.render("accountview");
   } catch (error) {
     console.error(error);
-    res.status(500).send("Error registering new user");
+    res.render("account", { message: "Error registering new user" });
+    // res.status(500).send("Error registering new user");
   }
 });
 
