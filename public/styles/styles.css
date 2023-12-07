@@ -188,7 +188,12 @@ header a:hover {
   display: inline-block; /* Allows the div to behave like a button */
   text-align: center; /* Centers the text inside the div */
   cursor: pointer; /* Changes cursor to pointer to indicate it's clickable */
-  transition: background-color 0.3s; /* Smooth transition for color and background */
+  transition: background-color 0.3s ease-in-out; /* Smooth transition for color and background */
+  transition: color 0.3s ease-in-out; /* Smooth transition for color and background */
+}
+
+.survey-button:hover {
+  color: white;
 }
 .survey-button a {
   color: rgb(89, 89, 89);
