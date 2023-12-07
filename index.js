@@ -145,6 +145,8 @@ app.get("/error", (req, res) => {
 });
 
 app.post("/submit-survey", async (req, res) => {
+  console.log("Request Body");
+
   console.log(req.body); // Log the entire body to see what is being received
 
   try {
@@ -170,6 +172,11 @@ app.post("/submit-survey", async (req, res) => {
       DailyInterestFluctuation,
       SleepIssues,
     } = req.body;
+    console.log("Validation Variable");
+    console.log(Validation);
+    console.log("Age Varibale");
+    console.log(Age);
+    console.log(parseInt(Age));
 
     const platformsArray = Array.isArray(platforms) ? platforms : [platforms];
 
@@ -177,7 +184,7 @@ app.post("/submit-survey", async (req, res) => {
       const insertResult = await trx("main")
         .insert({
           timestamp: trx.raw("current_timestamp"),
-          age: Age,
+          age: parseInt(Age),
           gender: Gender,
           relationshipStatus: RelationshipStatus,
           occupationStatus: OccuStatus,
