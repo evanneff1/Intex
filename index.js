@@ -134,7 +134,8 @@ app.post("/register", checkAuthentication, async (req, res) => {
       username: new_username,
       password: hashPass,
     });
-    res.render("accountview");
+    res.redirect("/accountview");
+    // res.render("accountview");
   } catch (error) {
     console.error(error);
     res.render("account", { message: "Error registering new user" });

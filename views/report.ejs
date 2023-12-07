@@ -4,18 +4,26 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Report</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Comfortaa&family=Montserrat&family=Raleway&display=swap"
+    rel="stylesheet">
   <style>
-    /* Basic Reset */
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: Arial, sans-serif;
+      font-family: "Raleway", sans-serif;
     }
 
     body {
-      background-color: #f4f4f4;
+      background-image: url("/images/blob.jpg");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      height: 100vh;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -72,37 +80,37 @@
     }
 
     .scrollable-container {
-        width: 100%;
-        max-width: 100vw;
-        max-height: 75vh;
-        overflow-x: auto;
-        overflow-y: auto;
-        white-space: nowrap;
-        /* border: 1px solid black; */
+      width: 100%;
+      max-width: 100vw;
+      max-height: 75vh;
+      overflow-x: auto;
+      overflow-y: auto;
+      white-space: nowrap;
+      /* border: 1px solid black; */
     }
 
     .scrollable-table {
-        width: 100%;
-        border: 1px solid black;
-        display: inline-block; 
+      width: 100%;
+      border: 1px solid black;
+      display: inline-block;
     }
 
     .scrollable-table tr:last-child td {
-    border-bottom: 1px solid black;
+      border-bottom: 1px solid black;
     }
 
     .scrollable-table th {
-        border-top: 1px solid black;
+      border-top: 1px solid black;
     }
 
     .scrollable-table td:first-child,
     .scrollable-table th:first-child {
-        border-left: 1px solid black;
+      border-left: 1px solid black;
     }
 
     .scrollable-table td:last-child,
     .scrollable-table th:last-child {
-        border-right: 1px solid black;
+      border-right: 1px solid black;
     }
 
     .scrollable-table tbody tr:nth-child(even) {
@@ -114,22 +122,23 @@
     }
 
     .scrollbar {
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        overflow-x: auto;
-        background-color: #f1f1f1; /* You can set a background color for the scrollbar area if needed */
-        padding: 10px; /* Adjust padding as needed */
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      overflow-x: auto;
+      background-color: #f1f1f1;
+      /* You can set a background color for the scrollbar area if needed */
+      padding: 10px;
+      /* Adjust padding as needed */
     }
   </style>
 </head>
 
 <body>
-  <!-- LOG IN VERIFICATION -->
+  <div class="homeicon"><a href="/"><img src="../images/home.svg" alt="Home" height="40px"></a></div>
 
-
-  <h1>Dropdown List from intex_db</h1>
+  <h1>Filter by Anonymous ID</h1>
 
   <form action="/report" method="get">
     <label for="dropdown">Select an option:</label>
@@ -153,27 +162,27 @@
     <table class="scrollable-table">
       <thead style="background-color: #ace4c9; color: lightslategray;">
         <tr>
-          <th style="text-align: left;">anonymousID</th>
-          <th style="text-align: left;">timestamp</th>
-          <th style="text-align: left;">age</th>
-          <th style="text-align: left;">gender</th>
-          <th style="text-align: left;">relationshipStatus</th>
-          <th style="text-align: left;">occupationStatus</th>
-          <th style="text-align: left;">mediaUse</th>
-          <th style="text-align: left;">mediaDailyAvg</th>
-          <th style="text-align: left;">mediaWOPurpose</th>
-          <th style="text-align: left;">distractedBusy</th>
-          <th style="text-align: left;">restlessness</th>
-          <th style="text-align: left;">distractedGeneral</th>
-          <th style="text-align: left;">botheredWorry</th>
-          <th style="text-align: left;">concentration</th>
-          <th style="text-align: left;">comparison</th>
-          <th style="text-align: left;">compFeelings</th>
-          <th style="text-align: left;">validation</th>
-          <th style="text-align: left;">depressed</th>
-          <th style="text-align: left;">dailyInterestFluctuation</th>
-          <th style="text-align: left;">sleepIssues</th>
-          <th style="text-align: left;">location</th>
+          <th style="text-align: left;">Anonymous ID</th>
+          <th style="text-align: left;">Timestamp</th>
+          <th style="text-align: left;">Age</th>
+          <th style="text-align: left;">Gender</th>
+          <th style="text-align: left;">Relationship Status</th>
+          <th style="text-align: left;">Occupation Status</th>
+          <th style="text-align: left;">Media Use</th>
+          <th style="text-align: left;">Media Daily Avg</th>
+          <th style="text-align: left;">Media WO Purpose</th>
+          <th style="text-align: left;">Distracted Busy</th>
+          <th style="text-align: left;">Restlessness</th>
+          <th style="text-align: left;">Distracted General</th>
+          <th style="text-align: left;">Bothered Worry</th>
+          <th style="text-align: left;">Concentration</th>
+          <th style="text-align: left;">Comparison</th>
+          <th style="text-align: left;">Comparison Feelings</th>
+          <th style="text-align: left;">Validation</th>
+          <th style="text-align: left;">Depressed</th>
+          <th style="text-align: left;">Daily Interest Fluctuation</th>
+          <th style="text-align: left;">Sleep Issues</th>
+          <th style="text-align: left;">Location</th>
         </tr>
       </thead>
       <tbody style="font-family: Arial; font-size: 9pt;" id="tableBody" name="tableBody">
