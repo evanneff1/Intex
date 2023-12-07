@@ -78,10 +78,10 @@ app.post("/login", async (req, res) => {
         };
         res.render("admin");
       } else {
-        res.status(400).send("Invalid username or password");
+        res.render("login", { message: "Incorrect password" });
       }
     } else {
-      res.status(400).send("Invalid username or password");
+      res.render("login", { message: "Incorrect username or password" });
     }
   } catch (error) {
     console.error(error);
