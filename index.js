@@ -305,9 +305,9 @@ app.get("/editAccount/:id", (req, res) => {
 
 app.post("/editAccountReal/:username", async (req, res) => {
   const { username, update_password } = req.body;
-
+  console.log(update_password);
   const newHashPass = await bcrypt.hash(update_password, saltRounds);
-
+  console.log(newHashPass);
   knex("accountManager")
     .where("username", req.params.username)
     .update({
