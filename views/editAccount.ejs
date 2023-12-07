@@ -19,7 +19,7 @@
     }
 
     body {
-      background-image: url("/images/blob.jpg");
+      background-image: url("../images/blob.jpg");
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
@@ -35,10 +35,20 @@
       background-color: rgb(58, 165, 129);
       color: white
     }
+
+    .homeicon {
+      width: 100%;
+      height: auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
   </style>
 </head>
 
 <body>
+  <div class="homeicon"><a href="/"><img src="../images/home.svg" alt="Home" height="40px"></a></div>
+
   <form action="/editAccountReal/<%=myAccount[0].username %>" method="POST">
     <fieldset style="width: 0px;">
       <legend>Edit your Account:</legend>
