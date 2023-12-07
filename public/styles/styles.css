@@ -327,6 +327,7 @@ ul li {
   justify-content: space-around; /* Distribute cards evenly */
   margin: 100px auto;
   width: 80%;
+  position: relative; /* This is crucial for the absolute positioning of .card */
 }
 
 .card {
@@ -377,4 +378,59 @@ ul li {
 
 .card.flipped .card-back {
   transform: rotateY(0);
+}
+@media (max-width: 800px) {
+  .left-box,
+  .right-box {
+    /* Reset flex-grow */
+    width: 100%; /* Full width for smaller screens */
+    margin: 10px 0; /* Add some vertical margin */
+  }
+
+  .bigidea {
+    flex-direction: column-reverse;
+    align-items: flex-start; /* Align items to the start of the container */
+    height: auto;
+  }
+
+  .right-box img {
+    max-height: 60vh; /* Limit the image height */
+    width: auto; /* Maintain aspect ratio */
+    object-fit: contain; /* Adjust this as needed */
+  }
+  main section {
+    margin-top: 50px;
+    margin-bottom: 20px;
+  }
+  .left-box h2 {
+    font-size: 60px; /* Smaller font size for smaller screens */
+  }
+
+  .left-box h2 span {
+    font-size: 50px; /* Adjust span font size accordingly */
+  }
+  .line {
+    margin-bottom: 6px;
+  }
+  main {
+    width: 85%;
+  }
+  .big-container {
+    margin-bottom: 30px;
+  }
+  .card.flipped {
+    position: absolute;
+    z-index: 100; /* Ensure it's above other content */
+    width: 100%; /* Expand to the full width of the container */
+    height: 100%; /* Expand to the full height of the container */
+    left: 0; /* Align to the left edge of the container */
+    top: 0; /* Align to the top edge of the container */
+    transform: rotateY(
+      0
+    ) !important; /* Make sure it's flipped to show the back */
+  }
+
+  .card-container {
+    perspective: none; /* Disable perspective if you have it */
+  }
 }

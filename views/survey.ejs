@@ -265,12 +265,49 @@
             /* Highlight color for current question */
             color: white;
         }
+
+        @media (max-height: 780px) {
+            #sidebar {
+                width: 80px;
+                /* Increase the width for 2 columns */
+            }
+
+            #progressList {
+                grid-template-columns: repeat(2, 1fr);
+                /* 2 columns */
+            }
+
+            main {
+                margin-left: 80px;
+
+            }
+        }
+
+        @media (max-width: 500px) {
+            .question {
+                padding: 50px;
+            }
+
+            .question button {
+                font-size: small;
+                padding: 10px 10px
+            }
+        }
+
+        .homeicon {
+            width: 100%;
+            height: auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
     </style>
 </head>
 
 <body>
 
     <div id="sidebar">
+        <div class="homeicon"><a href="/"><img src="../images/home.svg" alt="Home" height="40px"></a></div>
         <ul id="progressList">
             <!-- List items for each question -->
             <li id="progress1">1</li>

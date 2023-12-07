@@ -53,7 +53,11 @@ const knex = require("knex")({
 });
 
 app.get("/", (req, res) => {
-  res.render("index");
+  if (req.session.user) {
+    res.render("admin");
+  } else {
+    res.render("index");
+  }
 });
 
 app.post("/login", async (req, res) => {
