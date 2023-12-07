@@ -92,6 +92,16 @@ app.post("/login", async (req, res) => {
   }
 });
 
+app.post("/logout", (req, res) => {
+  req.session.destroy((err) => {
+    if (err) {
+      return res.status(500).send("Could not log out");
+    } else {
+      res.render("index");
+    }
+  });
+});
+
 app.post("/register", async (req, res) => {
   try {
     const new_username = req.body.new_username;
@@ -124,8 +134,7 @@ app.post("/register", async (req, res) => {
       username: new_username,
       password: hashPass,
     });
-
-    res.status(201).send("User created successfully");
+    res.render("accountview");
   } catch (error) {
     console.error(error);
     res.status(500).send("Error registering new user");
@@ -209,7 +218,7 @@ app.post("/submit-survey", async (req, res) => {
           Location: "Provo",
         })
         .returning("anonymousID");
-      const anonID = insertResult[0].anonymousID; // Adjust based on actual structure
+      const anonID = insertResult[0].anonymousID;
 
       console.log(anonID);
       if (platformsArray && platformsArray.length > 0) {
@@ -246,20 +255,16 @@ app.get("/accounts", checkAuthentication, (req, res) => {
 
 app.get("/report", checkAuthentication, async (req, res) => {
   try {
-    const drop = req.query.dropdown || "All Users"; // Retrieve the dropdown value
-
-    let intex_db; // Declare intex_db variable outside the if-else blocks
-
+    const drop = req.query.dropdown || "All Users";
+    let intex_db;
     drop_db = await knex.select().from("main").orderBy("anonymousID", "desc");
 
     if (drop == "All Users") {
-      // Fetch all data when dropdown value is "All Users"
       intex_db = await knex
         .select()
         .from("main")
         .orderBy("anonymousID", "desc");
     } else {
-      // Fetch data based on the dropdown value (assuming it's 'anonymousID')
       intex_db = await knex
         .select()
         .from("main")
@@ -275,73 +280,66 @@ app.get("/report", checkAuthentication, async (req, res) => {
   }
 });
 
-
 app.get("/accountview", (req, res) => {
-  knex.select().from("accounts").then(thing =>{
-    res.render("accountview", {myAccounts: thing});
-  }
-  )
+  knex
+    .select()
+    .from("accountManager")
+    .then((thing) => {
+      res.render("accountview", { myAccounts: thing });
+    });
 });
 
-app.get("/editAccount/:id", (req, res)=> {
-  knex.select("username",
-        "password").from("accounts").where("username", req.params.id).then(thing => {
-  res.render("editAccount", {myAccount: thing});
- }).catch( err => {
-    console.log(err);
-    res.status(500).json({err});
- });
+app.get("/editAccount/:id", (req, res) => {
+  knex
+    .select("username", "password")
+    .from("accountManager")
+    .where("username", req.params.id)
+    .then((thing) => {
+      res.render("editAccount", { myAccount: thing });
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json({ err });
+    });
 });
-
 
 app.post("/editAccountReal/:username", (req, res) => {
-  const { username, password } = req.body;
-  const updatedUsername = username.trim(); // Trim to remove any extra spaces
+  const { username, update_password } = req.body;
 
-  console.log("Route Param - Username:", req.params.username);
-  console.log("Req Body - Username:", updatedUsername);
-  console.log("Req Body - Password:", password);
+  const newHashPass = bcrypt.hash(update_password, saltRounds);
 
-  knex("accounts")
+  knex("accountManager")
     .where("username", req.params.username)
     .update({
-      username: updatedUsername,
-      password: password // Consider hashing the password before storing it in the database for security
+      password: newHashPass,
     })
-    .then(rowsAffected => {
+    .then((rowsAffected) => {
       console.log("Rows affected:", rowsAffected);
       if (rowsAffected > 0) {
         res.redirect("/accountview");
       } else {
-        // If no rows were affected, handle accordingly (e.g., user not found)
         res.status(404).send("Account not found or no changes made.");
       }
     })
-    .catch(err => {
-      // Handle any errors that might occur during the database update
+    .catch((err) => {
       console.error(err);
       res.status(500).send("Error updating account. Please try again.");
     });
 });
 
-
-
-// Handle POST request to delete the record from the database
-app.post('/deleteAccount/:username', (req, res) => {
+app.post("/deleteAccount/:username", (req, res) => {
   const username = req.params.username;
-  // Use knex to delete the record from the database
-  knex('accounts')
-      .where('username', username)
-      .del()
-      .then(() => {
-          res.redirect('/accountview'); // Redirect to the home page or another appropriate page
-      })
-      .catch(err => {
-          console.error(err);
-          res.status(500).send('Internal Server Error');
-      });
+  knex("accountManager")
+    .where("username", username)
+    .del()
+    .then(() => {
+      res.redirect("/accountview");
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500).send("Internal Server Error");
+    });
 });
-
 
 app.get("/survey", (req, res) => {
   res.render("survey");
