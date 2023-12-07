@@ -44,14 +44,14 @@
     }
 
     button {
-      background-color: #007bff;
+      background-color: rgb(51, 200, 148);
       color: white;
       cursor: pointer;
       transition: background-color 0.3s;
     }
 
     button:hover {
-      background-color: #0056b3;
+      background-color: rgb(51, 200, 148);
     }
 
     table {
@@ -70,6 +70,25 @@
     thead {
       background-color: cornflowerblue;
       color: white;
+    }
+
+    .scrollable-container {
+        width: 100%;
+        overflow-x: auto;
+    }
+
+    .scrollable-table {
+        width: 200%;
+        background-color: antiquewhite;
+        border: 1px solid black;
+    }
+
+    .scrollable-table tbody tr:nth-child(even) {
+        background-color: white;
+    }
+
+    .scrollable-table tbody tr:nth-child(odd) {
+        background-color: lightgray;
     }
   </style>
 </head>
@@ -92,14 +111,15 @@
     </select>
     <button type="submit">Filter</button>
   </form>
-  <button onclick="sortTable()">Sort by Anonymous ID</button>
+  <!-- <button onclick="sortTable()">Sort by Anonymous ID</button> -->
 
 
   <br><br><br><br>
 
-  <div style="height: 400px; overflow: auto;">
-    <table style="width: 100%; background-color: antiquewhite; border: 1px solid black;">
-      <thead style="background-color: cornflowerblue; color: white;">
+
+  <div class="scrollable-container">
+    <table class="scrollable-table">
+      <thead style="background-color: #ace4c9; color: lightslategray;">
         <tr>
           <th style="text-align: left;">anonymousID</th>
           <th style="text-align: left;">timestamp</th>
