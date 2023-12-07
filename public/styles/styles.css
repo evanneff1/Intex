@@ -240,6 +240,9 @@ ul {
 ul li {
   margin-bottom: 10px;
 }
+.purpose h2 {
+  margin-bottom: 15px;
+}
 
 .purpose p,
 .ideas ul,
@@ -371,6 +374,10 @@ ul li {
 }
 
 .card-back {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
   background-color: #f1f1f1; /* Card back color */
   transform: rotateY(180deg);
   padding: 20px; /* Padding for the text */
