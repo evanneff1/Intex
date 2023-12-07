@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+   <style>
+    
+ /* Basic Reset */
+ * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      /* background-color: #f4f4f4; */
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    justify-items: center;
+      padding: 20px;
+    }
+
+    h1 {
+      color: #333;
+      margin-bottom: 20px;
+    }
+
+    form {
+      margin-bottom: 20px;
+    }
+
+    label {
+      margin-right: 10px;
+    }
+
+    select,
+    button {
+      padding: 5px 10px;
+      margin-right: 10px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+    }
+
+    button {
+      background-color: rgb(51, 200, 148);
+      color: white;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: rgb(51, 200, 148);
+    }
+
+    .survey-button {
+  padding: 10px;
+  background-color: rgb(51, 200, 148);
+  display: inline-block; /* Allows the div to behave like a button */
+  text-align: center; /* Centers the text inside the div */
+  cursor: pointer; /* Changes cursor to pointer to indicate it's clickable */
+  transition: background-color 0.3s; /* Smooth transition for color and background */
+}
+.survey-button a {
+  color: rgb(89, 89, 89);
+  text-decoration: none;
+}
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background-color: #ace4c9;
+      border: 1px solid black;
+    }
+
+    th,
+  td {
+    text-align: left;
+    padding: 8px;
+    width: 32%; /* Set a width for the cells - this is an example; adjust as needed */
+    overflow: hidden; /* Hide any overflow content */
+    white-space: nowrap; /* Prevent wrapping within cells */
+  }
+
+    thead {
+      background-color: cornflowerblue;
+      color: white;
+    }
+
+    .scrollable-container {
+        width: 100%;
+        max-width: 100vw;
+        max-height: 100vh;
+        overflow-x: auto;
+        overflow-y: auto;
+        white-space: nowrap;
+        display: flex;
+    justify-content: center;
+    }
+
+    .scrollable-table {
+        width: 90%;
+        background-color: #ace4c9;
+        border: 1px solid black;
+        display: inline-block; 
+    }
+
+    .scrollable-table tbody tr:nth-child(even) {
+      background-color: white;
+    }
+
+    .scrollable-table tbody tr:nth-child(odd) {
+      background-color: lightgray;
+    }
+
+    .scrollbar {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        overflow-x: auto;
+        background-color: #f1f1f1; /* You can set a background color for the scrollbar area if needed */
+        padding: 10px; /* Adjust padding as needed */
+    }
+   </style>
+</head>
+<body>
+   <label><b>accounts Information:</b></label>
+   <br><br>
+   <div class="scrollable-container">
+    <table class="scrollable-table">
+      <thead style="background-color: #ace4c9; color: lightslategray;">
+        <tr>
+         <th style="text-align: left;">username</th>
+         <th style="text-align: left;">password</th>
+         <th style="text-align: left;"></th>
+         <th style="text-align: left;"></th>
+
+        </tr>
+    </thead>
+    <tbody style="font-family: Arial; font-size: 9pt;" id="tableBody" name="tableBody">
+      <% for (let iCount = 0; iCount < myAccounts.length; iCount++) { %>
+         <tr>
+           <td><%= myAccounts[iCount].username %></td>
+           <td><%= myAccounts[iCount].password %></td>
+           <td style="text-align: center;">
+             <form action="/editAccount/<%= myAccounts[iCount].username %>" method="GET">
+               <button type="submit">Edit</button>
+             </form>
+           </td>
+           <td style="text-align: center;">
+             <form action="/deleteAccount/<%= myAccounts[iCount].username %>" method="POST">
+               <button type="submit">Delete</button>
+             </form>
+           </td>
+         </tr>
+      <% } %>
+    </tbody>
+</table>
+</div>
+   <br><br>
+   <div class="survey-button"> <a href="/accounts">
+    <span>create an account</span>
+</a></div>
+   
+</body>
+</html>

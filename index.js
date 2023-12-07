@@ -275,6 +275,74 @@ app.get("/report", checkAuthentication, async (req, res) => {
   }
 });
 
+
+app.get("/accountview", (req, res) => {
+  knex.select().from("accounts").then(thing =>{
+    res.render("accountview", {myAccounts: thing});
+  }
+  )
+});
+
+app.get("/editAccount/:id", (req, res)=> {
+  knex.select("username",
+        "password").from("accounts").where("username", req.params.id).then(thing => {
+  res.render("editAccount", {myAccount: thing});
+ }).catch( err => {
+    console.log(err);
+    res.status(500).json({err});
+ });
+});
+
+
+app.post("/editAccountReal/:username", (req, res) => {
+  const { username, password } = req.body;
+  const updatedUsername = username.trim(); // Trim to remove any extra spaces
+
+  console.log("Route Param - Username:", req.params.username);
+  console.log("Req Body - Username:", updatedUsername);
+  console.log("Req Body - Password:", password);
+
+  knex("accounts")
+    .where("username", req.params.username)
+    .update({
+      username: updatedUsername,
+      password: password // Consider hashing the password before storing it in the database for security
+    })
+    .then(rowsAffected => {
+      console.log("Rows affected:", rowsAffected);
+      if (rowsAffected > 0) {
+        res.redirect("/accountview");
+      } else {
+        // If no rows were affected, handle accordingly (e.g., user not found)
+        res.status(404).send("Account not found or no changes made.");
+      }
+    })
+    .catch(err => {
+      // Handle any errors that might occur during the database update
+      console.error(err);
+      res.status(500).send("Error updating account. Please try again.");
+    });
+});
+
+
+
+// Handle POST request to delete the record from the database
+app.post('/deleteAccount/:username', (req, res) => {
+  const username = req.params.username;
+  // Use knex to delete the record from the database
+  knex('accounts')
+      .where('username', username)
+      .del()
+      .then(() => {
+          res.redirect('/accountview'); // Redirect to the home page or another appropriate page
+      })
+      .catch(err => {
+          console.error(err);
+          res.status(500).send('Internal Server Error');
+      });
+});
+
+
 app.get("/survey", (req, res) => {
   res.render("survey");
 });
