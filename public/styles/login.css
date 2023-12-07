@@ -24,7 +24,7 @@ body {
 div {
   background: white;
   padding: 40px;
-  border-radius: 10px;
+  /* border-radius: 10px; */
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
   text-align: center;
   width: 350px;

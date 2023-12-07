@@ -57,19 +57,19 @@
     }
 
     button {
-      background-color: rgb(51, 200, 148);
+      background-color: rgb(53, 173, 131);
       color: white;
       cursor: pointer;
-      transition: background-color 0.3s;
+      transition: background-color 0.3s ease-in-out;
     }
 
     button:hover {
-      background-color: rgb(51, 200, 148);
+      background-color: rgb(17, 75, 55);
     }
 
     .survey-button {
       padding: 10px;
-      background-color: rgb(51, 200, 148);
+      background-color: rgb(44, 159, 120);
       display: inline-block;
       /* Allows the div to behave like a button */
       text-align: center;
@@ -81,8 +81,12 @@
     }
 
     .survey-button a {
-      color: rgb(89, 89, 89);
+      color: rgb(227, 225, 225);
       text-decoration: none;
+    }
+
+    .survey-button:hover {
+      background-color: rgb(17, 75, 55);
     }
 
     table {
@@ -174,6 +178,9 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      position: absolute;
+      left: 20px;
+      top: 10px;
     }
   </style>
 </head>
