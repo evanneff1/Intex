@@ -74,13 +74,18 @@
 
     .scrollable-container {
         width: 100%;
+        max-width: 100vw;
+        max-height: 100vh;
         overflow-x: auto;
+        overflow-y: auto;
+        white-space: nowrap;
     }
 
     .scrollable-table {
         width: 200%;
         background-color: antiquewhite;
         border: 1px solid black;
+        display: inline-block; 
     }
 
     .scrollable-table tbody tr:nth-child(even) {
