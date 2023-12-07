@@ -241,10 +241,17 @@ app.get("/report", checkAuthentication, async (req, res) => {
 
     if (drop == "All Users") {
       // Fetch all data when dropdown value is "All Users"
-      intex_db = await knex.select().from("main").orderBy("anonymousID", "desc");
+      intex_db = await knex
+        .select()
+        .from("main")
+        .orderBy("anonymousID", "desc");
     } else {
       // Fetch data based on the dropdown value (assuming it's 'anonymousID')
-      intex_db = await knex.select().from("main").where("anonymousID", drop).orderBy("anonymousID", "desc");
+      intex_db = await knex
+        .select()
+        .from("main")
+        .where("anonymousID", drop)
+        .orderBy("anonymousID", "desc");
     }
     drop_db.push("All Users");
 
