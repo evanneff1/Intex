@@ -304,7 +304,7 @@ app.get("/editAccount/:id", (req, res) => {
 });
 
 app.post("/editAccountReal/:username", async (req, res) => {
-  const { update_password } = req.body;
+  const { password: update_password } = req.body;
   console.log(update_password);
   console.log(req.body);
   const newHashPass = await bcrypt.hash(update_password, saltRounds);
