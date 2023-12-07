@@ -83,8 +83,26 @@
 
     .scrollable-table {
         width: 100%;
-        /* border: 1px solid black; */
+        border: 1px solid black;
         display: inline-block; 
+    }
+
+    .scrollable-table tr:last-child td {
+    border-bottom: 1px solid black;
+    }
+
+    .scrollable-table th {
+        border-top: 1px solid black;
+    }
+
+    .scrollable-table td:first-child,
+    .scrollable-table th:first-child {
+        border-left: 1px solid black;
+    }
+
+    .scrollable-table td:last-child,
+    .scrollable-table th:last-child {
+        border-right: 1px solid black;
     }
 
     .scrollable-table tbody tr:nth-child(even) {

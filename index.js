@@ -64,14 +64,11 @@ app.post("/login", async (req, res) => {
   try {
     username = req.body.username;
     password = req.body.password;
-    console.log("Username:", username, "Password:", password);
-
     const result = await knex
       .select("username", "password")
       .from("accountManager")
       .where("username", username);
 
-    console.log(result);
     if (result.length > 0) {
       const user = result[0];
       const validPassword = await bcrypt.compare(password, user.password);
@@ -81,10 +78,10 @@ app.post("/login", async (req, res) => {
         };
         res.render("admin");
       } else {
-        res.status(400).send("Invalid username or password");
+        res.render("login", { message: "Incorrect password" });
       }
     } else {
-      res.status(400).send("Invalid username or password");
+      res.render("login", { message: "Incorrect username or password" });
     }
   } catch (error) {
     console.error(error);
@@ -102,7 +99,7 @@ app.post("/logout", (req, res) => {
   });
 });
 
-app.post("/register", async (req, res) => {
+app.post("/register", checkAuthentication, async (req, res) => {
   try {
     const new_username = req.body.new_username;
     const new_password = req.body.new_password;
@@ -158,10 +155,6 @@ app.get("/error", (req, res) => {
 });
 
 app.post("/submit-survey", async (req, res) => {
-  console.log("Request Body");
-
-  console.log(req.body); // Log the entire body to see what is being received
-
   try {
     const {
       question1: Age,
@@ -220,7 +213,6 @@ app.post("/submit-survey", async (req, res) => {
         .returning("anonymousID");
       const anonID = insertResult[0].anonymousID;
 
-      console.log(anonID);
       if (platformsArray && platformsArray.length > 0) {
         const platformInserts = platformsArray.map((platform) => ({
           anonID: parseInt(anonID),
@@ -280,7 +272,7 @@ app.get("/report", checkAuthentication, async (req, res) => {
   }
 });
 
-app.get("/accountview", (req, res) => {
+app.get("/accountview", checkAuthentication, (req, res) => {
   knex
     .select()
     .from("accountManager")
@@ -289,7 +281,7 @@ app.get("/accountview", (req, res) => {
     });
 });
 
-app.get("/editAccount/:id", (req, res) => {
+app.get("/editAccount/:id", checkAuthentication, (req, res) => {
   knex
     .select("username", "password")
     .from("accountManager")
@@ -303,32 +295,33 @@ app.get("/editAccount/:id", (req, res) => {
     });
 });
 
-app.post("/editAccountReal/:username", async (req, res) => {
-  const { password: update_password } = req.body;
-  console.log(update_password);
-  console.log(req.body);
-  const newHashPass = await bcrypt.hash(update_password, saltRounds);
-  console.log(newHashPass);
-  knex("accountManager")
-    .where("username", req.params.username)
-    .update({
-      password: newHashPass,
-    })
-    .then((rowsAffected) => {
-      console.log("Rows affected:", rowsAffected);
-      if (rowsAffected > 0) {
-        res.redirect("/accountview");
-      } else {
-        res.status(404).send("Account not found or no changes made.");
-      }
-    })
-    .catch((err) => {
-      console.error(err);
-      res.status(500).send("Error updating account. Please try again.");
-    });
-});
+app.post(
+  "/editAccountReal/:username",
+  checkAuthentication,
+  async (req, res) => {
+    const { password: update_password } = req.body;
+    const newHashPass = await bcrypt.hash(update_password, saltRounds);
+    knex("accountManager")
+      .where("username", req.params.username)
+      .update({
+        password: newHashPass,
+      })
+      .then((rowsAffected) => {
+        console.log("Rows affected:", rowsAffected);
+        if (rowsAffected > 0) {
+          res.redirect("/accountview");
+        } else {
+          res.status(404).send("Account not found or no changes made.");
+        }
+      })
+      .catch((err) => {
+        console.error(err);
+        res.status(500).send("Error updating account. Please try again.");
+      });
+  }
+);
 
-app.post("/deleteAccount/:username", (req, res) => {
+app.post("/deleteAccount/:username", checkAuthentication, (req, res) => {
   const username = req.params.username;
   knex("accountManager")
     .where("username", username)
