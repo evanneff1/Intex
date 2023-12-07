@@ -668,15 +668,25 @@
     var submittedQuestions = {};
 
     document.addEventListener('DOMContentLoaded', function () {
+        // Initialize session storage for each question with default values
+        for (let i = 1; i <= 20; i++) {
+            if (!sessionStorage.getItem('question' + i)) {
+                sessionStorage.setItem('question' + i, 'default_value'); // Replace 'default_value' as needed
+            }
+        }
+
+        // Set up event listeners for progress items
         var progressItems = document.querySelectorAll("#progressList li");
         progressItems.forEach(function (item, index) {
             item.addEventListener('click', function () {
                 goToQuestion(index + 1);
             });
         });
+
         // Initialize the first question
         goToQuestion(1);
     });
+
 
     function goToQuestion(questionNumber) {
         var questions = document.querySelectorAll('.question');
