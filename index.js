@@ -221,7 +221,7 @@ app.post("/submit-survey", async (req, res) => {
         organizationNum: OrgAffiliation,
       });
     });
-    res.send("Survey response submitted successfully");
+    res.json({ message: "Survey response submitted successfully" });
   } catch (error) {
     console.error("Error submitting survey response:", error);
     res.status(500).send("Error submitting survey response");

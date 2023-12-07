@@ -792,11 +792,17 @@
                     },
                     body: JSON.stringify(formData),
                 })
-                    .then(response => response.json())
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok ' + response.statusText);
+                        }
+                        return response.json(); // This expects the response to be JSON
+                    })
                     .then(data => {
                         console.log('Success:', data);
                         // Handle success - maybe redirect to a thank you page
                         window.location.href = '/success';
+
                     })
                     .catch((error) => {
                         console.error('Error:', error);
@@ -804,7 +810,6 @@
                         window.location.href = '/error';
 
                     });
-
                 // Clear sessionStorage
                 sessionStorage.clear();
             }
