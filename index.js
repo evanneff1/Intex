@@ -145,31 +145,38 @@ app.get("/error", (req, res) => {
 });
 
 app.post("/submit-survey", async (req, res) => {
+  console.log("Request Body");
+
   console.log(req.body); // Log the entire body to see what is being received
 
   try {
     const {
-      Age,
-      Gender,
-      RelationshipStatus,
-      OccuStatus,
-      OrgAffiliation,
-      SMUse,
-      platforms,
-      AvgTime,
-      UseWOPurpose,
-      SMDistraction,
-      Restless,
-      GenDisctracted,
-      BotheredWorries,
-      Concentration,
-      Comparison,
-      CompFeelings,
-      Validation,
-      Depressed,
-      DailyInterestFluctuation,
-      SleepIssues,
+      question1: Age,
+      question2: Gender,
+      question3: RelationshipStatus,
+      question4: OccuStatus,
+      question5: OrgAffiliation,
+      question6: SMUse,
+      question7: platforms,
+      question8: AvgTime,
+      question9: UseWOPurpose,
+      question10: SMDistraction,
+      question11: Restless,
+      question12: GenDisctracted,
+      question13: BotheredWorries,
+      question14: Concentration,
+      question15: Comparison,
+      question16: CompFeelings,
+      question17: Validation,
+      question18: Depressed,
+      question19: DailyInterestFluctuation,
+      question20: SleepIssues,
     } = req.body;
+    console.log("Validation Variable");
+    console.log(Validation);
+    console.log("Age Varibale");
+    console.log(Age);
+    console.log(parseInt(Age));
 
     const platformsArray = Array.isArray(platforms) ? platforms : [platforms];
 
@@ -177,7 +184,7 @@ app.post("/submit-survey", async (req, res) => {
       const insertResult = await trx("main")
         .insert({
           timestamp: trx.raw("current_timestamp"),
-          age: Age,
+          age: parseInt(Age),
           gender: Gender,
           relationshipStatus: RelationshipStatus,
           occupationStatus: OccuStatus,
