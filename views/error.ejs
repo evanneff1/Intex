@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thank you</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Comfortaa&family=Montserrat&family=Raleway&display=swap"
+    rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Raleway", sans-serif;
+    }
+
+    body {
+      /* background-color: #f4f4f4; */
+      background-image: url("../public/images/blob.jpg");
+      /* The path to your image file */
+      background-size: 100%;
+      /* Cover the entire space */
+      background-position: center;
+      /* Center the image */
+      background-repeat: no-repeat;
+      /* Do not repeat the image */
+      /* Removed the background-attachment property */
+    }
+
+    main {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      height: 100vh;
+
+    }
+
+    div {
+      background-color: rgb(54, 172, 133);
+      padding: 20px;
+      margin-top: 30px;
+      transition: background-color 0.3s ease-in-out;
+    }
+
+    div:hover {
+      background-color: rgb(76, 106, 96);
+    }
+
+    div a {
+      text-decoration: none;
+      color: rgb(233, 232, 232);
+      transition: color 0.3s ease-in-out;
+
+    }
+
+    div:hover a {
+      color: white;
+    }
+  </style>
+</head>
+
+<body>
+  <main>
+    <h1>We are sorry, but something went wrong!</h1>
+    <div><a href="/">Go back home</a></div>
+  </main>
+</body>
+
+</html>

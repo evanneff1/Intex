@@ -796,10 +796,13 @@
                     .then(data => {
                         console.log('Success:', data);
                         // Handle success - maybe redirect to a thank you page
+                        fetch('/success', { method: 'GET' })
                     })
                     .catch((error) => {
                         console.error('Error:', error);
                         // Handle error
+                        fetch('/error', { method: 'GET' })
+
                     });
 
                 // Clear sessionStorage

@@ -10,6 +10,7 @@ let username;
 let password;
 const saltRounds = 10;
 const app = express();
+app.use(express.json());
 
 app.use(
   session({
@@ -52,16 +53,7 @@ const knex = require("knex")({
 });
 
 app.get("/", (req, res) => {
-  knex
-    .select()
-    .from("accountManager")
-    .then((countrys) => {
-      res.render("index", { mycountrys: countrys });
-    })
-    .catch((err) => {
-      console.log(err);
-      res.status(500).json({ err });
-    });
+  res.render("index");
 });
 
 app.post("/login", async (req, res) => {
@@ -143,6 +135,14 @@ function checkAuthentication(req, res, next) {
     res.render("login");
   }
 }
+
+app.get("/success", (req, res) => {
+  res.render("thankyou");
+});
+
+app.get("/error", (req, res) => {
+  res.render("error");
+});
 
 app.post("/submit-survey", async (req, res) => {
   console.log(req.body); // Log the entire body to see what is being received
