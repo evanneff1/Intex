@@ -1,19 +1,40 @@
-// Names
+// Index 2023 Project
+// Evan Neff, Thomas Nielsen, Zach Edgerton, Tristan McLaughlin
+// Section 04 - Group 14
+// ProvoMediaHealth.com
+////////////////////////////////////////////////
+// This is the main hub for our website. This code handles all the requests that
+// come into the site and directs them to anywhere they need to go. This code is made up
+// of various routes that allow for the website to direct users where they need / want
+// to go.
+////////////////////////////////////////////////
 
+// Importing required modules
 const path = require("path");
 const express = require("express");
 const pg = require("pg");
-
 const bcrypt = require("bcrypt");
 const session = require("express-session");
 const crypto = require("crypto");
+
+// Generating a secret for the session
 const secret = crypto.randomBytes(64).toString("hex");
+
+// Variables for storing username and password
 let username;
 let password;
-const saltRounds = 10;
-const app = express();
-app.use(express.json());
 
+// Number of rounds for bcrypt salt
+const saltRounds = 10;
+
+// Creating an Express app
+const app = express();
+
+// Middleware to parse JSON and URL-encoded data
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+// Session configuration
 app.use(
   session({
     secret: secret,
@@ -21,18 +42,30 @@ app.use(
     saveUninitialized: true,
     cookie: {
       secure: false,
-      maxAge: 24 * 60 * 60 * 500, // Session expires after 12 hours
+      maxAge: 24 * 60 * 60 * 500,
     },
   })
 );
 
+// Serving static files from 'public' directory
 app.use(express.static("public"));
 
+// Setting the port for the server
+const port = process.env.PORT || 3000;
+
+// Setting EJS as the view engine
 app.set("view engine", "ejs");
 
-const port = process.env.PORT || 3000;
-app.use(express.urlencoded({ extended: true }));
+// Middleware for checking if a user is authenticated
+function checkAuthentication(req, res, next) {
+  if (req.session.user) {
+    next();
+  } else {
+    res.render("login");
+  }
+}
 
+// Middleware to enforce HTTPS in production
 app.use((req, res, next) => {
   if (!req.secure && req.get("x-forwarded-proto") !== "https") {
     return res.redirect("https://" + req.get("host") + req.url);
@@ -40,6 +73,7 @@ app.use((req, res, next) => {
   next();
 });
 
+// Configuring knex for PostgreSQL database access
 const knex = require("knex")({
   client: "pg",
   connection: {
@@ -54,6 +88,7 @@ const knex = require("knex")({
   },
 });
 
+// Route for the home page
 app.get("/", (req, res) => {
   if (req.session.user) {
     res.render("admin");
@@ -62,6 +97,7 @@ app.get("/", (req, res) => {
   }
 });
 
+// Route for handling login
 app.post("/login", async (req, res) => {
   try {
     username = req.body.username;
@@ -91,6 +127,7 @@ app.post("/login", async (req, res) => {
   }
 });
 
+// Route for handling logout
 app.post("/logout", (req, res) => {
   req.session.destroy((err) => {
     if (err) {
@@ -101,6 +138,7 @@ app.post("/logout", (req, res) => {
   });
 });
 
+// Route for handling creation of new account
 app.post("/register", checkAuthentication, async (req, res) => {
   try {
     const new_username = req.body.new_username;
@@ -145,14 +183,7 @@ app.post("/register", checkAuthentication, async (req, res) => {
   }
 });
 
-function checkAuthentication(req, res, next) {
-  if (req.session.user) {
-    next();
-  } else {
-    res.render("login");
-  }
-}
-
+// Additional routes for various functionalities like survey submission, account management, etc.
 app.get("/success", (req, res) => {
   res.render("thankyou");
 });
@@ -350,6 +381,7 @@ app.get("/survey", (req, res) => {
   res.render("survey");
 });
 
+// Starting the server on the port 3000
 app.listen(port, () => {
   console.log(`Server running on http://localhost:${port}`);
 });

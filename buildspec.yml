@@ -1,3 +1,4 @@
+# Used to build the EC2 instance each time the EBS is deployed
 version: 0.2
 
 phases:

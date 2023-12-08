@@ -1,3 +1,9 @@
+<!-- This is our survey page. It uses css and some javascript to 
+dynamically show each question as the entire page. It also stores
+the user responses in the session storage and uses that to submit 
+to the database. There is also javascript on the page to handle the 
+side panel and keeping track of the progress.  -->
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,6 +21,7 @@
         href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Comfortaa&family=Montserrat&family=Raleway&display=swap"
         rel="stylesheet">
     <style>
+        /* Styling for the page */
         main {
             margin-left: 40px;
             height: 100%;
@@ -25,9 +32,6 @@
             flex-direction: row;
             justify-content: space-between;
             width: 100%;
-            /* Ensure it spans the full width of its parent */
-
-            /* This will position the buttons at opposite ends */
         }
 
         .question button {
@@ -40,7 +44,6 @@
             margin-top: 20px;
             transition: background-color 0.3s ease-in-out;
             font-size: large;
-            /* Remove margin if you want buttons to align exactly at the ends */
         }
 
         body,
@@ -50,16 +53,10 @@
             width: 100%;
             height: 100%;
             font-family: Raleway, sans-serif;
-            /* You can change the font family */
             background-image: url("../images/blob.jpg");
-            /* The path to your image file */
             background-size: cover;
-            /* Cover the entire space */
             background-position: center;
-            /* Center the image */
             background-repeat: no-repeat;
-            /* Do not repeat the image */
-
         }
 
         .question p {
@@ -77,13 +74,10 @@
 
         .question {
             width: 100%;
-            /* Adjust the width as needed */
             max-width: 700px;
-            /* Maximum width */
             padding: 20px;
             box-sizing: border-box;
             display: none;
-            /* Hide all questions initially */
             flex-direction: column;
             align-items: start;
             justify-content: center;
@@ -96,68 +90,44 @@
 
         }
 
-        /* General styles for the slider */
         input[type="range"] {
             -webkit-appearance: none;
-            /* Override default CSS styles */
             appearance: none;
             width: 100%;
-            /* Full-width */
             height: 25px;
-            /* Specified height */
             background: #dddddd00;
-            /* Grey background */
             outline: none;
-            /* Remove outline */
-            /* Set the opacity (optional) */
             -webkit-transition: .2s;
-            /* 0.2 seconds transition on hover */
             transition: opacity .2s;
         }
 
-        /* Mouse-over effects */
         input[type="range"]:hover {
             opacity: 1;
-            /* Fully opaque on hover */
         }
 
-        /* Styles for the slider thumb (the draggable circle) */
         input[type="range"]::-webkit-slider-thumb {
             -webkit-appearance: none;
-            /* Override default look */
             appearance: none;
             width: 25px;
-            /* Set a specific slider handle width */
             height: 25px;
-            /* Slider handle height */
             background: #2b7c70;
-            /* Green background */
             cursor: pointer;
-            /* Cursor on hover */
             margin-top: -8.5px;
-            /* Adjust this value to center the thumb */
         }
 
         input[type="range"]::-moz-range-thumb {
             width: 25px;
-            /* Width of the thumb */
             height: 25px;
-            /* Height of the thumb */
             background: #2c7b76;
-            /* Green background */
             cursor: pointer;
-            /* Cursor on hover */
             margin-top: -8.5px;
-            /* Adjust this value to center the thumb */
         }
 
-        /* Styles for the slider track (the line the thumb slides on) */
         input[type="range"]::-webkit-slider-runnable-track {
             width: 100%;
             height: 8.4px;
             cursor: pointer;
             background: #808182;
-            /* Blue background */
             border-radius: 5px;
         }
 
@@ -166,7 +136,6 @@
             height: 15px;
             cursor: pointer;
             background: #3071a9;
-            /* Blue background */
             border-radius: 1.3px;
         }
 
@@ -190,7 +159,6 @@
             display: grid;
             grid-template-columns: repeat(3, minmax(0, 1fr));
             gap: 20px;
-            /* Adjust the gap between checkboxes as needed */
             text-align: left;
             margin-top: 10px;
             margin-bottom: 10px;
@@ -206,13 +174,10 @@
             transform: scale(2);
         }
 
-
-
         .question button:hover {
             background-color: #535353;
         }
 
-        /* The slider labels */
         .slider-labels {
             display: flex;
             justify-content: space-between;
@@ -225,22 +190,17 @@
             left: 0;
             top: 0;
             width: 40px;
-            /* Adjust as needed */
             height: 100%;
             background-color: #f0f0f0;
-            /* Sidebar background color */
             padding: 30px 10px;
             box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
             overflow-y: auto;
-            /* Add scroll if content overflows */
         }
 
         #progressList {
             display: grid;
             grid-template-columns: repeat(1, 1fr);
-            /* 2 columns */
             grid-gap: 10px;
-            /* Gap between grid items */
             list-style-type: none;
             padding: 0;
         }
@@ -252,7 +212,6 @@
             cursor: pointer;
             transition: background-color 0.3s ease-in-out;
             text-align: center;
-            /* Center the text */
         }
 
         #progressList li:hover {
@@ -261,31 +220,35 @@
 
         #progressList li.completed {
             background-color: #d3d3d3;
-            /* Color for completed questions */
             color: #fff;
             cursor: default;
         }
 
         #progressList li.current {
             background-color: rgb(35, 200, 167);
-            /* Highlight color for current question */
             color: white;
         }
 
+        .homeicon {
+            width: 100%;
+            height: auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Media queries to handle different sizes of screens */
         @media (max-height: 780px) {
             #sidebar {
                 width: 80px;
-                /* Increase the width for 2 columns */
             }
 
             #progressList {
                 grid-template-columns: repeat(2, 1fr);
-                /* 2 columns */
             }
 
             main {
                 margin-left: 80px;
-
             }
         }
 
@@ -325,27 +288,16 @@
             input[type="range"]::-moz-range-track {
                 width: 110%;
                 height: 6px;
-
-
             }
-        }
-
-        .homeicon {
-            width: 100%;
-            height: auto;
-            display: flex;
-            justify-content: center;
-            align-items: center;
         }
     </style>
 </head>
 
 <body>
-
+    <!-- This is the sidebar panel that dynamically updates based on whether the questions have been submitted and what question is submitted  -->
     <div id="sidebar">
         <div class="homeicon"><a href="/"><img src="../images/home.svg" alt="Home" height="40px"></a></div>
         <ul id="progressList">
-            <!-- List items for each question -->
             <li id="progress1">1</li>
             <li id="progress2">2</li>
             <li id="progress3">3</li>
@@ -366,7 +318,6 @@
             <li id="progress18">18</li>
             <li id="progress19">19</li>
             <li id="progress20">20</li>
-
         </ul>
     </div>
 
@@ -414,6 +365,7 @@
                 </div>
                 <p id="error3"></p>
             </div>
+
             <!-- Question 4 -->
             <div class="question" id="question4" style="display: none;">
                 <label for="OccuStatus">What is your occupation status?</label>
@@ -431,6 +383,7 @@
                 </div>
                 <p id="error4"></p>
             </div>
+
             <!-- Question 5 -->
             <div class="question" id="question5" style="display: none;">
                 <label for="OrgAffiliation">What type of organization are you affiliated with?</label>
@@ -448,6 +401,7 @@
                 </div>
                 <p id="error5"></p>
             </div>
+
             <!-- Question 6 -->
             <div class="question" id="question6" style="display: none;">
                 <label for="SMUse">Do you use Social Media?</label>
@@ -462,6 +416,7 @@
                 </div>
                 <p id="error6"></p>
             </div>
+
             <!-- Question 7 -->
             <div class="question" id="question7" style="display: none;">
                 <label>What Social Media platforms do you commonly use?</label>
@@ -502,6 +457,7 @@
                 </div>
                 <p id="error7"></p>
             </div>
+
             <!-- Question 8 -->
             <div class="question" id="question8" style="display: none;">
                 <label for="AvgTime">What is the average time you spend on Social Media every day?</label>
@@ -520,6 +476,7 @@
                 </div>
                 <p id="error8"></p>
             </div>
+
             <!-- Question 9 -->
             <div class="question" id="question9" style="display: none;">
                 <label for="UseWOPurpose">How often do you find yourself using Social Media without a specific
@@ -538,6 +495,7 @@
                 </div>
                 <p id="error9"></p>
             </div>
+
             <!-- Question 10 -->
             <div class="question" id="question10" style="display: none;">
                 <label for="SMDistraction">How often do you get distracted by Social Media when you are busy doing
@@ -556,6 +514,7 @@
                 </div>
                 <p id="error10"></p>
             </div>
+
             <!-- Question 11 -->
             <div class="question" id="question11" style="display: none;">
                 <label for="Restless">Do you feel restless if you haven't used Social media in a while?</label>
@@ -573,6 +532,7 @@
                 </div>
                 <p id="error11"></p>
             </div>
+
             <!-- Question 12 -->
             <div class="question" id="question12" style="display: none;">
                 <label for="GenDisctracted">How often are you distracted?</label>
@@ -590,6 +550,7 @@
                 </div>
                 <p id="error12"></p>
             </div>
+
             <!-- Question 13 -->
             <div class="question" id="question13" style="display: none;">
                 <label for="BotheredWorries">How often are you bothered by worries?</label>
@@ -607,6 +568,7 @@
                 </div>
                 <p id="error13"></p>
             </div>
+
             <!-- Question 14 -->
             <div class="question" id="question14" style="display: none;">
                 <label for="Concentration">Do you find it difficult to concentrate on things?</label>
@@ -624,6 +586,7 @@
                 </div>
                 <p id="error14"></p>
             </div>
+
             <!-- Question 15 -->
             <div class="question" id="question15" style="display: none;">
                 <label for="Comparison">How often do you compare yourself to other successful people
@@ -642,6 +605,7 @@
                 </div>
                 <p id="error15"></p>
             </div>
+
             <!-- Question 16 -->
             <div class="question" id="question16" style="display: none;">
                 <label for="CompFeelings">Following the previous question, how do often do you feel negative feelings
@@ -660,6 +624,7 @@
                 </div>
                 <p id="error16"></p>
             </div>
+
             <!-- Question 17 -->
             <div class="question" id="question17" style="display: none;">
                 <label for="Validation">How often do you look to seek validation from features of social media?</label>
@@ -677,6 +642,7 @@
                 </div>
                 <p id="error17"></p>
             </div>
+
             <!-- Question 18 -->
             <div class="question" id="question18" style="display: none;">
                 <label for="Depressed">How often do you feel depressed or down?</label>
@@ -694,6 +660,7 @@
                 </div>
                 <p id="error18"></p>
             </div>
+
             <!-- Question 19 -->
             <div class="question" id="question19" style="display: none;">
                 <label for="DailyInterestFluctuation">How frequently does your interest in daily
@@ -713,6 +680,7 @@
                 </div>
                 <p id="error19"></p>
             </div>
+
             <!-- Question 20 -->
             <div class="question" id="question20" style="display: none;">
                 <label for="SleepIssues"> How often do you face issues regarding sleep?</label>
@@ -743,7 +711,7 @@
         // Initialize session storage for each question with default values
         for (let i = 1; i <= 20; i++) {
             if (!sessionStorage.getItem('question' + i)) {
-                sessionStorage.setItem('question' + i, 'default_value'); // Replace 'default_value' as needed
+                sessionStorage.setItem('question' + i, 'default_value');
             }
         }
 
@@ -759,7 +727,7 @@
         goToQuestion(1);
     });
 
-
+    // The function to go to a specific question on the survey
     function goToQuestion(questionNumber) {
         var questions = document.querySelectorAll('.question');
         questions.forEach(function (question, index) {
@@ -768,6 +736,8 @@
         updateProgressVisuals(questionNumber);
 
     }
+
+    // The function to update the progress of the sidebar 
     function updateProgressVisuals(currentQuestion) {
         var progressItems = document.querySelectorAll("#progressList li");
         progressItems.forEach(function (item, index) {
@@ -787,7 +757,7 @@
         });
     }
 
-
+    // Additional function to update progress of sidebar
     function updateProgress(questionNumber, completed) {
         var progressItem = document.getElementById("progress" + questionNumber);
         if (progressItem) {
@@ -799,9 +769,9 @@
         }
     }
 
+    // Moving to the next question (triggered when Next button is pushed)
     function nextQuestion(currentQuestion) {
         // Save current question's answer to sessionStorage
-
         var answer = document.getElementById("question" + currentQuestion).querySelector('input, select').value;
         if (answer) {
             submittedQuestions[currentQuestion] = true; // Mark as submitted
@@ -821,12 +791,11 @@
         else {
             document.getElementById('error' + currentQuestion).innerHTML = "Please enter value"
         }
-
     }
 
+    // Function to go to the previous questiom (Triggered by the Previous button)
     function previousQuestion(currentQuestion) {
-        submittedQuestions[currentQuestion] = false; // Unmark if needed
-
+        submittedQuestions[currentQuestion] = false;
         document.getElementById("question" + currentQuestion).style.display = "none";
         var previousQuestion = document.getElementById("question" + (currentQuestion - 1));
         if (previousQuestion) {
@@ -834,8 +803,7 @@
         }
     }
 
-
-
+    // The submit survey function, triggers the route in Index.js to submit the results to the database
     function submitSurvey() {
         var answer = document.getElementById("question20").querySelector('input, select').value;
         if (answer) {
@@ -844,12 +812,9 @@
             sessionStorage.setItem("question20", answer);
             updateProgressVisuals(21)
         }
-
         if (Object.keys(submittedQuestions).length == 20) {
             let allTrue = Object.values(submittedQuestions).every(value => value === true);
-
             if (allTrue) {
-
                 // Collect all answers from sessionStorage and send to server...
                 var formData = {};
                 for (var i = 1; i <= 20; i++) {
@@ -889,11 +854,8 @@
         else {
             document.getElementById('error20').innerHTML = 'Not all questions have been answered. Please complete the survey.'
         }
-
     }
 
 </script>
-
-
 
 </html>

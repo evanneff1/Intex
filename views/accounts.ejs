@@ -1,3 +1,4 @@
+<!-- The create account page, only accessible when logged in -->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -27,6 +28,8 @@
       <input type="password" name="passwordConf" id="passwordConf"><br><br>
       <button type="submit">Create Account</button>
     </form>
+
+    <!-- EJS to handle create account errors -->
     <% if (typeof message !=='undefined' ) { %>
       <p>
         <%= message %>
