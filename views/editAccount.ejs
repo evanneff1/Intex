@@ -43,12 +43,20 @@
     }
 
     /* Div Styling */
-    div {
+    .edit {
       background: white;
-      padding: 40px;
+      padding: 30px;
       box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
       text-align: center;
       width: 350px;
+    }
+
+    fieldset {
+      border: none;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
     }
 
     /* Heading */
@@ -67,6 +75,8 @@
       display: block;
       margin-bottom: 5px;
       color: #333;
+      font-size: large;
+      padding: 10px
     }
 
     /* Input Fields Styling */
@@ -85,6 +95,28 @@
     input[type="password"]:focus {
       border-color: #007bff;
       outline: none;
+    }
+
+    .button a {
+      text-decoration: none;
+      color: white;
+    }
+
+    .button {
+      width: 100%;
+      padding: 10px;
+      background-color: #5eb98d;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.3s;
+      margin-top: 10px
+    }
+
+    .button:hover {
+      background-color: #2d6048;
     }
 
     /* Button Styling */
@@ -136,24 +168,24 @@
 
 <body>
   <div class="homeicon"><a href="/"><img src="../images/home.svg" alt="Home" height="40px"></a></div>
+  <div class="edit">
+    <h2>Edit your account:</h2>
+    <form action="/editAccountReal/<%=myAccount[0].username %>" method="POST">
+      <fieldset style="width: 0px;">
 
-  <form action="/editAccountReal/<%=myAccount[0].username %>" method="POST">
-    <fieldset style="width: 0px;">
-      <legend>Edit your Account:</legend>
-      <label>Username:</label>
-      <p>
-        <%=myAccount[0].username %>
-      </p>
-      <br><br>
-      <label for="password">Password:</label>
-      <input type="text" id="password" name="password">
-      <br><br>
-
-
-    </fieldset>
-    <button type="submit">Save</button>
-  </form>
-  <div><a href="/accountview">Cancel</a></div>
+        <label>Username:</label>
+        <h3>
+          <%=myAccount[0].username %>
+        </h3>
+        <br><br>
+        <label for="password">Password:</label>
+        <input type="text" id="password" name="password">
+        <br><br>
+      </fieldset>
+      <button type="submit">Save</button>
+    </form>
+    <div class="button"><a href="/accountview">Cancel</a></div>
+  </div>
 </body>
 
 </html>
