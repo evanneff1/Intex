@@ -19,7 +19,7 @@ Hello there! 👋 We're thrilled to have you explore the source code of ProvoMed
 ## Getting Started 🚀
 
 To dive into the code:
-1. **Clone the Repository:** `git clone [repository-link]`
+1. **Clone the Repository:** `git clone https://github.com/evanneff1/Intex`
 2. **Explore the Directories:** Navigate through the organized folders to understand the structure.
 3. **Understand the Code:** Comments and clear naming conventions will guide you.
 
@@ -28,8 +28,8 @@ To dive into the code:
 To log in as an admin:
 1. Go to the side menu on the homepage.
 2. Enter the following credentials:
-   - Username: `[Your Admin Username]`
-   - Password: `[Your Admin Password]`
+   - Username: `admin`
+   - Password: `admin123`
 3. Access the admin page with features like account management and survey reports.
 
 ## Contributing ✨
