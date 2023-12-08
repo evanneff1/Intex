@@ -219,22 +219,20 @@
             <% if (myAccounts[iCount].username=='admin' ) { %>
               <td></td>
               <td></td>
-
-              <%} %>
-                <% else { %>
-                  <td style="text-align: center;">
-                    <form action="/editAccount/<%= myAccounts[iCount].username %>" method="GET">
-                      <button type="submit">Change Password</button>
-                    </form>
-                  </td>
-                  <td style="text-align: center;">
-                    <form action="/deleteAccount/<%= myAccounts[iCount].username %>" method="POST">
-                      <button type="submit">Delete</button>
-                    </form>
-                  </td>
-                  <%} %>
+              <% } else { %>
+                <td style="text-align: center;">
+                  <form action="/editAccount/<%= myAccounts[iCount].username %>" method="GET">
+                    <button type="submit">Change Password</button>
+                  </form>
+                </td>
+                <td style="text-align: center;">
+                  <form action="/deleteAccount/<%= myAccounts[iCount].username %>" method="POST">
+                    <button type="submit">Delete</button>
+                  </form>
+                </td>
+                <% } %>
           </tr>
-          <%} %>
+          <% } %>
       </tbody>
     </table>
   </div>
