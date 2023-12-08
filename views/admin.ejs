@@ -1,3 +1,6 @@
+<!-- very similar to index.ejs but only account holders can see it. 
+has the dashboard on it and links. -->
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,37 +19,25 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Comfortaa&family=Montserrat&family=Raleway&display=swap"
     rel="stylesheet">
-  <link rel="stylesheet" type="text/css" href="/styles/admin.css">
+  <link rel="stylesheet" type="text/css" href="../public/styles/admin.css">
   <style>
 
   </style>
 </head>
-<!-- very similar to index.ejs but only account holders can see it. 
-has the dashboard on it and links. -->
+
+
 <body>
   <form id="logout-form" action="/logout" method="post" style="display: none;">
-    <!-- You can add hidden inputs here if needed -->
   </form>
 
 
-  <div class="profile-menu">
-    <div class="menu-icon" onclick="toggleSidebar()">
-      <span class="bar"></span>
-      <span class="bar"></span>
-      <span class="bar"></span>
-    </div>
-
-    <div class="sidebar" id="sidebar">
-      <a href="#" onclick="document.getElementById('logout-form').submit();">Logout</a>
-      <a href="/accounts">Create Account</a>
-      <a href="/accountview">Edit Accounts</a>
-      <a href="/report">Report</a>
-      <a href="/survey">Survey</a>
-      <!-- Add more links as needed -->
-    </div>
+  <div class="sidebar" id="sidebar">
+    <a href="#" onclick="document.getElementById('logout-form').submit();">Logout</a>
+    <a href="/accounts">Create Account</a>
+    <a href="/accountview">Edit Accounts</a>
+    <a href="/report">Report</a>
+    <a href="/survey">Survey</a>
   </div>
-  <!-- Overlay -->
-  <div class="overlay" id="overlay" onclick="toggleSidebar()"></div>
 
   <header>
     <h1>Provo Media Health</h1>
@@ -58,27 +49,13 @@ has the dashboard on it and links. -->
   <main>
     <div class="powerbi">
       <section class="powerbi-report">
-        <iframe title="Intex" width="1000" height="703.5"
-          src="https://app.powerbi.com/view?r=eyJrIjoiYjM5YjZkNjEtZmY0YS00MmRlLWI0MzYtYWQ3MGNiMzc1YzllIiwidCI6ImNlZDQ1MmVhLTExNDktNDMyOS05YjE5LWVhNjc4MzI5ZGU3OSIsImMiOjZ9"
+        <iframe title="Report Section" width="1000" height="703.5"
+          src="https://app.powerbi.com/view?r=eyJrIjoiYjJiYThhN2ItMzI5ZS00ZGRhLTgyODEtMTY0ZWFlYjcwMGE4IiwidCI6ImNlZDQ1MmVhLTExNDktNDMyOS05YjE5LWVhNjc4MzI5ZGU3OSIsImMiOjZ9"
           frameborder="0" allowFullScreen="true"></iframe>
       </section>
     </div>
 
   </main>
 </body>
-<script>
-  function toggleSidebar() {
-    var sidebar = document.getElementById("sidebar");
-    var overlay = document.getElementById("overlay");
-
-    if (sidebar.style.width === "250px") {
-      sidebar.style.width = "0";
-      overlay.style.display = "none";
-    } else {
-      sidebar.style.width = "250px";
-      overlay.style.display = "block";
-    }
-  }
-</script>
 
 </html>

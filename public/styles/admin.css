@@ -14,6 +14,7 @@ body {
   background-repeat: no-repeat; /* Do not repeat the image */
   /* Removed the background-attachment property */
   height: 100vh;
+  width: 85vw;
 }
 
 nav {
@@ -69,10 +70,11 @@ nav {
   z-index: 1005;
   top: 0;
   right: 0;
-  background-color: #424141dc;
+  background-color: #424141;
   overflow-x: hidden;
   transition: 0.5s;
   padding-top: 50px;
+  width: 250px;
 }
 
 .sidebar a {
@@ -88,18 +90,6 @@ nav {
   color: #f1f1f1;
 }
 
-/* Overlay */
-.overlay {
-  display: none;
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  background: rgba(0, 0, 0, 0.457);
-  z-index: 1003; /* Below sidebar */
-}
-
 .line {
   height: 2px; /* This sets the thickness of your line */
   width: 90%; /* This sets the line to cover 80% of the width of its container */
@@ -111,58 +101,6 @@ nav {
   ); /* This sets the color of your line */
   margin: 0 auto;
   margin-bottom: 50px;
-}
-
-.big-container {
-  display: flex;
-}
-
-.bigidea {
-  width: 100%;
-  height: 90%;
-  display: flex;
-  flex-direction: row;
-  margin-bottom: 5%;
-  /* margin-top: 5%; */
-  align-items: center;
-}
-
-.left-box,
-.right-box {
-  flex: 1;
-  height: 100%;
-}
-.left-box {
-  margin-right: 10px;
-  display: flex;
-  justify-content: right;
-  align-items: end;
-  flex-direction: column;
-}
-
-.left-box h2 {
-  font-family: "Bebas Neue", sans-serif;
-  font-size: 100px;
-  color: #5c5a5a;
-  text-align: end;
-}
-
-.left-box h2 span {
-  font-size: 80px;
-  font-family: "Raleway", sans-serif;
-
-  /* font-family: "Bebas Neue", sans-serif; */
-}
-
-.right-box {
-  margin-left: 10px;
-  display: flex;
-  align-items: end;
-  justify-content: center;
-}
-
-.right-box img {
-  height: 70vh;
 }
 
 header {
@@ -189,20 +127,8 @@ header h2 {
   font-size: 2em;
 }
 
-.survey-button {
-  padding: 10px;
-  background-color: rgb(51, 200, 148);
-  display: inline-block; /* Allows the div to behave like a button */
-  text-align: center; /* Centers the text inside the div */
-  cursor: pointer; /* Changes cursor to pointer to indicate it's clickable */
-  transition: background-color 0.3s; /* Smooth transition for color and background */
-}
-.survey-button a {
-  color: rgb(89, 89, 89);
-  text-decoration: none;
-}
 main {
-  width: 80%;
+  width: 100%;
   margin: 0 auto;
 }
 
@@ -211,7 +137,7 @@ main section {
   background-color: white;
   padding: 20px;
   /* border-radius: 10px; */
-  box-shadow: 0 5px 15px rgba(131, 77, 77, 0.1);
+  box-shadow: 0 5px 15px rgba(38, 15, 15, 0.796);
 }
 .powerbi {
   width: 80%;
@@ -223,7 +149,7 @@ main section {
   background-color: white;
   padding: 20px;
   /* border-radius: 10px; */
-  box-shadow: 0 5px 15px rgba(131, 77, 77, 0.1);
+  box-shadow: 0 5px 15px rgba(43, 25, 25, 0.605);
 }
 
 iframe {
@@ -401,33 +327,7 @@ ul li {
   transform: rotateY(0);
 }
 
-@media (max-width: 800px) {
-  .left-box,
-  .right-box {
-    /* Reset flex-grow */
-    width: 100%; /* Full width for smaller screens */
-    margin: 10px 0; /* Add some vertical margin */
-  }
-
-  .bigidea {
-    flex-direction: column-reverse;
-    align-items: flex-start; /* Align items to the start of the container */
-    height: auto;
-  }
-
-  .right-box img {
-    max-height: 60vh; /* Limit the image height */
-    width: auto; /* Maintain aspect ratio */
-    object-fit: contain; /* Adjust this as needed */
-  }
-
-  .left-box h2 {
-    font-size: 60px; /* Smaller font size for smaller screens */
-  }
-
-  .left-box h2 span {
-    font-size: 50px; /* Adjust span font size accordingly */
-  }
+@media (max-width: 1100px) {
   .line {
     margin-bottom: 6px;
   }
@@ -438,22 +338,11 @@ ul li {
     margin-top: 50px;
     margin-bottom: 20px;
   }
-  .big-container {
-    margin-bottom: 30px;
+  .sidebar {
+    width: 100px;
   }
-  .card.flipped {
-    position: absolute;
-    z-index: 100; /* Ensure it's above other content */
-    width: 100%; /* Expand to the full width of the container */
-    height: 100%; /* Expand to the full height of the container */
-    left: 0; /* Align to the left edge of the container */
-    top: 0; /* Align to the top edge of the container */
-    transform: rotateY(
-      0
-    ) !important; /* Make sure it's flipped to show the back */
-  }
-
-  .card-container {
-    perspective: none; /* Disable perspective if you have it */
+  .sidebar a {
+    font-size: 1em;
+    padding: 8px 8px 8px 15px;
   }
 }
