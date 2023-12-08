@@ -1,3 +1,5 @@
+// Names
+
 const path = require("path");
 const express = require("express");
 const pg = require("pg");
@@ -304,25 +306,29 @@ app.post(
   "/editAccountReal/:username",
   checkAuthentication,
   async (req, res) => {
-    const { password: update_password } = req.body;
-    const newHashPass = await bcrypt.hash(update_password, saltRounds);
-    knex("accountManager")
-      .where("username", req.params.username)
-      .update({
-        password: newHashPass,
-      })
-      .then((rowsAffected) => {
-        console.log("Rows affected:", rowsAffected);
-        if (rowsAffected > 0) {
-          res.redirect("/accountview");
-        } else {
-          res.status(404).send("Account not found or no changes made.");
-        }
-      })
-      .catch((err) => {
-        console.error(err);
-        res.status(500).send("Error updating account. Please try again.");
-      });
+    if (req.params.username != "admin") {
+      const { password: update_password } = req.body;
+      const newHashPass = await bcrypt.hash(update_password, saltRounds);
+      knex("accountManager")
+        .where("username", req.params.username)
+        .update({
+          password: newHashPass,
+        })
+        .then((rowsAffected) => {
+          console.log("Rows affected:", rowsAffected);
+          if (rowsAffected > 0) {
+            res.redirect("/accountview");
+          } else {
+            res.status(404).send("Account not found or no changes made.");
+          }
+        })
+        .catch((err) => {
+          console.error(err);
+          res.status(500).send("Error updating account. Please try again.");
+        });
+    } else {
+      res.status(404).send("You cannot edit admin username or password");
+    }
   }
 );
 
