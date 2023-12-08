@@ -175,7 +175,7 @@
 
   <br><br><br><br>
 
-
+  <!-- Generate table and table head inside of a scrollabe container so it is easy to view on one page -->
   <div class="scrollable-container">
     <table class="scrollable-table">
       <thead style="background-color: #ace4c9; color: lightslategray;">
@@ -203,6 +203,7 @@
           <th style="text-align: left;">Location</th>
         </tr>
       </thead>
+      <!-- Generate the table body using ejs -->
       <tbody style="font-family: Arial; font-size: 9pt;" id="tableBody" name="tableBody">
         <% for (let iCount=0; iCount < intex_db.length; iCount++) { %>
           <tr>
@@ -280,6 +281,8 @@
 
 </body>
 
+
+<!-- Script to sort the table: not in use as we did this using a KNEX SQL statement instead -->
 <script>
   function sortTable() {
     var table, rows, switching, i, x, y, shouldSwitch;
